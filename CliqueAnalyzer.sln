@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqueWebClient", "CliqueWebClient\CliqueWebClient.csproj", "{92849F3E-96F9-45F1-9F18-AE8C0BBCD6C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqueService", "CliqueBusiness\CliqueService.csproj", "{3BA65A32-B192-40F5-90D7-911D27EB2028}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqueDataEntity", "CliqueDataEntity\CliqueDataEntity.csproj", "{C9521B92-3EF5-45EC-8C41-70CA4B16D9A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqueModel", "CliqueModel\CliqueModel.csproj", "{9428BB36-BD4A-4B36-9F0D-A28256605F0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTagJob", "HashTagJob\HashTagJob.csproj", "{AF10C1ED-A463-40F9-920F-6AAAA67D7111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqueJobTester", "CliqueJobTester\CliqueJobTester.csproj", "{B7C3D49A-0F2D-4D18-A0BB-E85E49F76AFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92849F3E-96F9-45F1-9F18-AE8C0BBCD6C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92849F3E-96F9-45F1-9F18-AE8C0BBCD6C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92849F3E-96F9-45F1-9F18-AE8C0BBCD6C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92849F3E-96F9-45F1-9F18-AE8C0BBCD6C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BA65A32-B192-40F5-90D7-911D27EB2028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BA65A32-B192-40F5-90D7-911D27EB2028}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BA65A32-B192-40F5-90D7-911D27EB2028}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BA65A32-B192-40F5-90D7-911D27EB2028}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9521B92-3EF5-45EC-8C41-70CA4B16D9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9521B92-3EF5-45EC-8C41-70CA4B16D9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9521B92-3EF5-45EC-8C41-70CA4B16D9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9521B92-3EF5-45EC-8C41-70CA4B16D9A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9428BB36-BD4A-4B36-9F0D-A28256605F0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9428BB36-BD4A-4B36-9F0D-A28256605F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9428BB36-BD4A-4B36-9F0D-A28256605F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9428BB36-BD4A-4B36-9F0D-A28256605F0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF10C1ED-A463-40F9-920F-6AAAA67D7111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF10C1ED-A463-40F9-920F-6AAAA67D7111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF10C1ED-A463-40F9-920F-6AAAA67D7111}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF10C1ED-A463-40F9-920F-6AAAA67D7111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7C3D49A-0F2D-4D18-A0BB-E85E49F76AFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7C3D49A-0F2D-4D18-A0BB-E85E49F76AFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7C3D49A-0F2D-4D18-A0BB-E85E49F76AFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7C3D49A-0F2D-4D18-A0BB-E85E49F76AFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

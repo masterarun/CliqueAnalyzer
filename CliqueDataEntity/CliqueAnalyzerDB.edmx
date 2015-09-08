@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ipl_userprofilerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CliqueTagRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tag" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FromDate" Type="datetime" Nullable="false" />
+          <Property Name="ToDate" Type="datetime" Nullable="false" />
+          <Property Name="AddedAt" Type="datetime" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Latitude" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Longitude" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CliqueTagTweetMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+          <Property Name="TweetId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CliqueTweets">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="PostedBy" Type="nvarchar(max)" />
+          <Property Name="PostedAt" Type="nvarchar" MaxLength="50" />
+          <Property Name="Score" Type="float" />
+          <Property Name="AddedAt" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedAt" Type="datetime" Nullable="false" />
+          <Property Name="ProfileImageURL" Type="nvarchar(max)" />
+          <Property Name="TweetIdStr" Type="nvarchar(max)" />
+          <Property Name="Latitude" Type="nvarchar(max)" />
+          <Property Name="Longitude" Type="nvarchar(max)" />
+          <Property Name="Location" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_CliqueTagTweetMapping_ToCliqueTag">
+          <End Role="CliqueTagRequest" Type="Self.CliqueTagRequest" Multiplicity="1" />
+          <End Role="CliqueTagTweetMapping" Type="Self.CliqueTagTweetMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CliqueTagRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CliqueTagTweetMapping">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CliqueTagTweetMapping_ToCliqueTweet">
+          <End Role="CliqueTweets" Type="Self.CliqueTweets" Multiplicity="1" />
+          <End Role="CliqueTagTweetMapping" Type="Self.CliqueTagTweetMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CliqueTweets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CliqueTagTweetMapping">
+              <PropertyRef Name="TweetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ipl_userprofilerModelStoreContainer">
+          <EntitySet Name="CliqueTagRequest" EntityType="Self.CliqueTagRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CliqueTagTweetMapping" EntityType="Self.CliqueTagTweetMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CliqueTweets" EntityType="Self.CliqueTweets" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CliqueTagTweetMapping_ToCliqueTag" Association="Self.FK_CliqueTagTweetMapping_ToCliqueTag">
+            <End Role="CliqueTagRequest" EntitySet="CliqueTagRequest" />
+            <End Role="CliqueTagTweetMapping" EntitySet="CliqueTagTweetMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CliqueTagTweetMapping_ToCliqueTweet" Association="Self.FK_CliqueTagTweetMapping_ToCliqueTweet">
+            <End Role="CliqueTweets" EntitySet="CliqueTweets" />
+            <End Role="CliqueTagTweetMapping" EntitySet="CliqueTagTweetMapping" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ipl_userprofilerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CliqueTagRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AddedAt" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CliqueTagTweetMappings" Relationship="Self.FK_CliqueTagTweetMapping_ToCliqueTag" FromRole="CliqueTagRequest" ToRole="CliqueTagTweetMapping" />
+        </EntityType>
+        <EntityType Name="CliqueTagTweetMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagId" Type="Int32" Nullable="false" />
+          <Property Name="TweetId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CliqueTagRequest" Relationship="Self.FK_CliqueTagTweetMapping_ToCliqueTag" FromRole="CliqueTagTweetMapping" ToRole="CliqueTagRequest" />
+          <NavigationProperty Name="CliqueTweet" Relationship="Self.FK_CliqueTagTweetMapping_ToCliqueTweet" FromRole="CliqueTagTweetMapping" ToRole="CliqueTweets" />
+        </EntityType>
+        <EntityType Name="CliqueTweet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostedAt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Score" Type="Double" />
+          <Property Name="AddedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProfileImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TweetIdStr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CliqueTagTweetMappings" Relationship="Self.FK_CliqueTagTweetMapping_ToCliqueTweet" FromRole="CliqueTweets" ToRole="CliqueTagTweetMapping" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_CliqueTagTweetMapping_ToCliqueTag">
+          <End Role="CliqueTagRequest" Type="Self.CliqueTagRequest" Multiplicity="1" />
+          <End Role="CliqueTagTweetMapping" Type="Self.CliqueTagTweetMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CliqueTagRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CliqueTagTweetMapping">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CliqueTagTweetMapping_ToCliqueTweet">
+          <End Role="CliqueTweets" Type="Self.CliqueTweet" Multiplicity="1" />
+          <End Role="CliqueTagTweetMapping" Type="Self.CliqueTagTweetMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CliqueTweets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CliqueTagTweetMapping">
+              <PropertyRef Name="TweetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ipl_CliqueAnalyzerDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CliqueTagRequests" EntityType="Self.CliqueTagRequest" />
+          <EntitySet Name="CliqueTagTweetMappings" EntityType="Self.CliqueTagTweetMapping" />
+          <EntitySet Name="CliqueTweets" EntityType="Self.CliqueTweet" />
+          <AssociationSet Name="FK_CliqueTagTweetMapping_ToCliqueTag" Association="Self.FK_CliqueTagTweetMapping_ToCliqueTag">
+            <End Role="CliqueTagRequest" EntitySet="CliqueTagRequests" />
+            <End Role="CliqueTagTweetMapping" EntitySet="CliqueTagTweetMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CliqueTagTweetMapping_ToCliqueTweet" Association="Self.FK_CliqueTagTweetMapping_ToCliqueTweet">
+            <End Role="CliqueTweets" EntitySet="CliqueTweets" />
+            <End Role="CliqueTagTweetMapping" EntitySet="CliqueTagTweetMappings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ipl_userprofilerModelStoreContainer" CdmEntityContainer="ipl_CliqueAnalyzerDB">
+          <EntitySetMapping Name="CliqueTagRequests">
+            <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueTagRequest">
+              <MappingFragment StoreEntitySet="CliqueTagRequest">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="AddedAt" ColumnName="AddedAt" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CliqueTagTweetMappings">
+            <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueTagTweetMapping">
+              <MappingFragment StoreEntitySet="CliqueTagTweetMapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="TweetId" ColumnName="TweetId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CliqueTweets">
+            <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueTweet">
+              <MappingFragment StoreEntitySet="CliqueTweets">
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+                <ScalarProperty Name="PostedAt" ColumnName="PostedAt" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="AddedAt" ColumnName="AddedAt" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="ProfileImageURL" ColumnName="ProfileImageURL" />
+                <ScalarProperty Name="TweetIdStr" ColumnName="TweetIdStr" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

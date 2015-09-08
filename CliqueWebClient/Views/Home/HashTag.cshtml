@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "HashTag Search";
+}
+
+
+<div class="row">
+    <h4>HashTag Search</h4>    
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <label for="InputName">HashTag</label>
+        <div class="input-group">
+            <span class="input-group-addon">@@</span>
+            <input type="text" class="form-control" placeholder="HashTag" data-bind="value: hashTagRequestModel().tag">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <label for="InputName">Location</label>
+        <div class="input-group">
+            <span class="input-group-addon">@@</span>
+            <input type="text" class="form-control" placeholder="Location" data-bind="value: hashTagRequestModel().location">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <label for="InputName">From Date</label>
+        <div class="input-group">
+            <span class="input-group-addon">@@</span>
+            <input type="date" class="form-control" data-bind="value: hashTagRequestModel().fromDate">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <label for="InputName">To Date</label>
+        <div class="input-group">
+            <span class="input-group-addon">@@</span>
+            <input type="date" class="form-control" data-bind="value: hashTagRequestModel().toDate">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" data-bind="click: getHashTagTweet">Get Details</button>
+    </div>
+ </div>
+<div class="row" style="height: 120px;">
+    <div class="col-md-12">
+
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#mapTab" data-toggle="tab">Map</a></li>
+                    <li><a href="#detailsTab" data-toggle="tab">Details</a></li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade" id="mapTab">
+                        <div id="map"></div>
+                    </div>
+                        <div class="tab-pane fade" id="detailsTab">
+                            <table id="tweetTable" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+
+                                        <th>Tweet Text</th>
+                                        <th>Profile URL</th>
+                                        <th>Posted By</th>
+                                        <th>Posted At</th>
+                                        <th>Score</th>
+                                        <th>Highlight</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind=" foreach: tweetList ">
+                                    <tr>
+                                        <td data-bind="text: Text"></td>
+                                        <td><img width="50px" height="50px" data-bind="attr:{src: ProfileImageURL}" />  </td>
+                                        <td data-bind="text: PostedBy"></td>
+                                        <td data-bind="text: PostedAt"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+            </div>
+
+
+
+            @section scripts{
+                <script type="text/javascript">
+
+                   
+                    $(document).ready(function () {
+                        var viewModel = new HashTagViewModel();
+                        ko.applyBindings(viewModel);
+                    });
+                </script>
+            }

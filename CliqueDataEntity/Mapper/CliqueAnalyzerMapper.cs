@@ -83,8 +83,8 @@ namespace CliqueDataEntity.Mapper
             model.Score = response.Score;
             model.Text = response.Text;
             model.TweetIdStr = response.TweetIdStr;
-            model.Latitude = currentCity.Latitude.ToString();
-            model.Longitude = currentCity.Longitude.ToString();
+            model.Latitude = response.Latitude;
+            model.Longitude = response.Longitude;
             model.Location = response.Location;
 
             return model;

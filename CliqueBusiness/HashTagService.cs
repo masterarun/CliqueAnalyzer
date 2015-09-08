@@ -31,9 +31,14 @@ namespace CliqueService
             return repository.GetHashTagRequestDetails(id);
         }
 
+        public void UpdateHashTagStatus(int id, CliqueTagRequestStatus status)
+        {
+            repository.UpdateHashTagStatus(id, status);
+        }
 
 
-        public IList<CliqueTweetModel> GetHashTagTweets(CliqueTagRequestModel model)
+
+        public CliqueTagRequestModel GetHashTagTweets(CliqueTagRequestModel model)
         {
             return repository.GetHashTagTweets(model);
         }

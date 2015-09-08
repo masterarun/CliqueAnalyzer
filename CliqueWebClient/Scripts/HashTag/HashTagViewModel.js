@@ -7,12 +7,13 @@ var HashTagViewModel = function () {
     self.hashTagRequestModel = ko.observable(new HashTagRequestModel());
 
  
-    self.initialize = function () {
+    self.initialize = function (res) {
+       // baseUrl = "http://localhost:4620/";
         // Create the map.
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 8,
-            center: { lat: 20.593684, lng: 78.96288 },
-            mapTypeId: google.maps.MapTypeId.TERRAIN,
+            center: { lat: Number(res.Latitude), lng: Number(res.Longitude) },
+            mapTypeId: google.maps.MapTypeId.SATELLITE,
             heading: 60,
             tilt: 30,
             //labels:true,
@@ -54,8 +55,8 @@ var HashTagViewModel = function () {
             url: baseUrl + "api/CliqueAPI/GetHashTagTweets?tag=" + self.hashTagRequestModel().tag() + "&location=" + self.hashTagRequestModel().location() + "&fromDate=" + self.hashTagRequestModel().fromDate() + "&toDate=" + self.hashTagRequestModel().toDate()
         }).done(function (res) {
             debugger;
-            self.tweetList(res);
-            self.initialize();
+            self.tweetList(res.CliqueTweetList);
+            self.initialize(res);
             $("#tweetTable").DataTable({ responsive: true });
         }).error(function (ex) {
             debugger;

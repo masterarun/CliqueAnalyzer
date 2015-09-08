@@ -25,7 +25,7 @@ namespace CliqueWebClient.Controllers
         }
 
         [HttpGet]
-        public IList<CliqueTweetModel> GetHashTagTweets(string tag, string location, DateTime fromDate, DateTime toDate)
+        public CliqueTagRequestModel GetHashTagTweets(string tag, string location, DateTime fromDate, DateTime toDate)
         {
             var model = new CliqueTagRequestModel
             {
@@ -45,6 +45,13 @@ namespace CliqueWebClient.Controllers
             HashTagService service = new HashTagService();
             var responseModel = service.AddHashTagRequest(model);
 
+
+            var storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzureWebJobsStorage"].ToString());
+            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+            CloudQueue thumbnailRequestQueue = queueClient.GetQueueReference("addhashtagrequest");
+            thumbnailRequestQueue.CreateIfNotExists();
+            var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(new HashTagRequest { Id = model.Id }));
+            thumbnailRequestQueue.AddMessage(queueMessage);
 
         }
 

@@ -33,14 +33,18 @@ namespace CliqueDataEntity.Repository
         }
 
 
-        public IList<CliqueTweetModel> GetHashTagTweets(CliqueTagRequestModel model)
+        public CliqueTagRequestModel GetHashTagTweets(CliqueTagRequestModel model)
         {
+            CliqueTagRequestModel response;
             var selectedTag = dataEntity.CliqueTagRequests.FirstOrDefault(res => res.Tag == model.Tag && res.Location == model.Location);
                 //&& res.FromDate == model.FromDate && res.ToDate == model.ToDate);
             if (selectedTag == null)
                 return null;
 
-            return selectedTag.CliqueTagTweetMappings.Select(res => res.CliqueTweet).Select(mapper.MapTweetEntityToModel).ToList();
+            response = mapper.MapHashTagEntityToModel(selectedTag);
+
+            response.CliqueTweetList =  selectedTag.CliqueTagTweetMappings.Select(res => res.CliqueTweet).Select(mapper.MapTweetEntityToModel).ToList();
+            return response;
 
         }
 
@@ -64,6 +68,16 @@ namespace CliqueDataEntity.Repository
                 dataEntity.SaveChanges();
             }
 
+        }
+
+        public void UpdateHashTagStatus(int id, CliqueTagRequestStatus status)
+        {
+            var selectedTag = dataEntity.CliqueTagRequests.FirstOrDefault(res => res.Id == id);
+            //&& res.FromDate == model.FromDate && res.ToDate == model.ToDate);
+            if (selectedTag == null)
+                return;
+            selectedTag.Status = (int)status;
+            dataEntity.SaveChanges();
         }
     }
 }

@@ -10,13 +10,12 @@ var HashTagViewModel = function () {
     self.initialize = function (res) {
        // baseUrl = "http://localhost:4620/";
         // Create the map.
-        debugger;
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 12,
             center: { lat: Number(res.Latitude), lng: Number(res.Longitude) },
             mapTypeId: google.maps.MapTypeId.HYBRID,
             heading: 90,
-            //tilt: 30,
+            tilt: 30,
             //labels:true,
             //setOptions:{styles: styles},
         });
@@ -56,12 +55,15 @@ var HashTagViewModel = function () {
             url: baseUrl + "api/CliqueAPI/GetHashTagTweets?tag=" + self.hashTagRequestModel().tag() + "&location=" + self.hashTagRequestModel().location() + "&fromDate=" + self.hashTagRequestModel().fromDate() + "&toDate=" + self.hashTagRequestModel().toDate()
         }).done(function (res) {
             debugger;
+            if (self.table) {
+                self.table.clear();
+                self.table.destroy();
+            }
             self.tweetList(res.CliqueTweetList);
             self.initialize(res);
-            $("#tweetTable").DataTable({
-                responsive: true
-            });
-            $("#Details").removeClass('hide').addClass('show');
+
+            self.table = $("#tweetTable").DataTable({ responsive: true });
+          $("#Details").removeClass('hide').addClass('show');
             //$('#MapDetails').addClass('in');
         }).error(function (ex) {
             debugger;
@@ -73,7 +75,7 @@ var HashTagViewModel = function () {
     };
 
 
-
+    self.table = "";
     debugger;
 
   //  self.getHashTagTweet();

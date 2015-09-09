@@ -21,8 +21,7 @@
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody style="font-weight: bold; font-family: Calibri">
-                <!-- ko foreach: hashTagRequestList() -->
+            <tbody style="font-weight: bold; font-family: Calibri" data-bind=" foreach: hashTagRequestList">
                 <tr>
                     <td data-bind="text: Id"></td>
                     <td data-bind="text: Tag"></td>
@@ -30,8 +29,7 @@
                     <td data-bind="text: ToDate"></td>
                     <td data-bind="text: Location"></td>
                     <td data-bind="text: StatusName"></td>
-                </tr>
-                <!-- /ko -->
+                </tr>                
             </tbody>
         </table>
 

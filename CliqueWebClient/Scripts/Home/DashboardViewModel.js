@@ -52,8 +52,13 @@ var DashboardViewModel = function () {
             url: baseUrl + "api/CliqueAPI/GetAllHashTag"
         }).done(function (res) {
             debugger;
+            if (self.table) {
+                self.table.clear();
+                self.table.destroy();
+            }
             self.hashTagRequestList(res);
-            $("#tagTable").DataTable({ responsive: true });
+            self.table = $("#tagTable").DataTable({ responsive: true });
+            
         }).error(function (ex) {
             debugger;
             alert("Error");
@@ -68,6 +73,8 @@ var DashboardViewModel = function () {
     debugger;
 
     self.getHashTagRequest();
+    self.table = "";
+   
 
     debugger;
 

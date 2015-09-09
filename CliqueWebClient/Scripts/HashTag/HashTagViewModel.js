@@ -55,9 +55,15 @@ var HashTagViewModel = function () {
             url: baseUrl + "api/CliqueAPI/GetHashTagTweets?tag=" + self.hashTagRequestModel().tag() + "&location=" + self.hashTagRequestModel().location() + "&fromDate=" + self.hashTagRequestModel().fromDate() + "&toDate=" + self.hashTagRequestModel().toDate()
         }).done(function (res) {
             debugger;
+            if (self.table) {
+                self.table.clear();
+                self.table.destroy();
+            }
             self.tweetList(res.CliqueTweetList);
             self.initialize(res);
-            $("#tweetTable").DataTable({ responsive: true });
+
+            self.table = $("#tweetTable").DataTable({ responsive: true });
+          
             //$('#MapDetails').addClass('in');
         }).error(function (ex) {
             debugger;
@@ -69,7 +75,7 @@ var HashTagViewModel = function () {
     };
 
 
-
+    self.table = "";
     debugger;
 
   //  self.getHashTagTweet();

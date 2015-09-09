@@ -28,6 +28,7 @@ namespace HashTagJob
             {
                 service.UpdateHashTagStatus(request.Id, CliqueModel.CliqueTagRequestStatus.Error);
                 log.WriteLine(e.Message);
+                log.WriteLine(e.StackTrace);
             }
         }
     }

@@ -58,6 +58,7 @@ var HashTagViewModel = function () {
             self.tweetList(res.CliqueTweetList);
             self.initialize(res);
             $("#tweetTable").DataTable({ responsive: true });
+            //$('#MapDetails').addClass('in');
         }).error(function (ex) {
             debugger;
             alert("Error");

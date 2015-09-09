@@ -33,15 +33,15 @@
         @*<label for="InputName">To Date</label>*@
         <div class="input-group">
             <span class="input-group-addon">@@</span>
-            <input type="date" class="form-control" placeholder="To Date" data-bind="value: hashTagRequestModel().toDate">
+            <input type="date" class="form-control" placeholder="To Date" data-bind="value: hashTagRequestModel().toDate" onkeyup="javascript: TriggerSubmit();">
         </div>
     </div>
     <div class="col-md-2">
-        <button type="button" class="btn btn-primary" style="background-color: Orange; color: White; font-weight: bold; font-family: Calibri" data-dismiss="modal" data-bind="click: getHashTagTweet">Get Details</button>
+        <button id="getMapBtn" type="button" class="btn btn-primary" style="background-color: Orange; color: White; font-weight: bold; font-family: Calibri" data-dismiss="modal" data-bind="click: getHashTagTweet">Get Details</button>
     </div>
 </div>
-<br />
-<div class="row">
+<br/>
+<div id="Details" class="row hide">
     <div class="col-md-12">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
@@ -52,7 +52,7 @@
                            font-weight: bold; font-family: Calibri;">Map View</a>
                     </h4>
                 </div>
-                <div id="MapDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="MapHeading">
+                <div id="MapDetails" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="MapHeading">
                     <div class="panel-body">
                         <div id="map"></div>
                     </div>
@@ -98,11 +98,15 @@
 
 @section scripts{
     <script type="text/javascript">
-
-
+        function TriggerSubmit() {
+            if (event.keyCode === 13) {
+                $("#getMapBtn").click();
+            }
+        }
         $(document).ready(function () {
             var viewModel = new HashTagViewModel();
             ko.applyBindings(viewModel);
+            
         });
     </script>
 }

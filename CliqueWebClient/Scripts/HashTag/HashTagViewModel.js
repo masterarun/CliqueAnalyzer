@@ -10,12 +10,13 @@ var HashTagViewModel = function () {
     self.initialize = function (res) {
        // baseUrl = "http://localhost:4620/";
         // Create the map.
+        debugger;
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 8,
+            zoom: 12,
             center: { lat: Number(res.Latitude), lng: Number(res.Longitude) },
-            mapTypeId: google.maps.MapTypeId.SATELLITE,
-            heading: 60,
-            tilt: 30,
+            mapTypeId: google.maps.MapTypeId.HYBRID,
+            heading: 90,
+            //tilt: 30,
             //labels:true,
             //setOptions:{styles: styles},
         });
@@ -36,9 +37,9 @@ var HashTagViewModel = function () {
         });
        
         //debugger;
-        for (var i = 0; i < 250; i++) {
+        //for (var i = 0; i < 250; i++) {
            
-        }
+        //}
 
 
     }
@@ -57,7 +58,10 @@ var HashTagViewModel = function () {
             debugger;
             self.tweetList(res.CliqueTweetList);
             self.initialize(res);
-            $("#tweetTable").DataTable({ responsive: true });
+            $("#tweetTable").DataTable({
+                responsive: true
+            });
+            $("#Details").removeClass('hide').addClass('show');
             //$('#MapDetails').addClass('in');
         }).error(function (ex) {
             debugger;

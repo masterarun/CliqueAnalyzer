@@ -13,7 +13,7 @@ namespace CliqueModel
         public string Tag { get; set; }
         public System.DateTime FromDate { get; set; }
         public System.DateTime ToDate { get; set; }
-        public Nullable<System.DateTime> AddedAt { get; set; }
+        public string AddedAt { get; set; }
         public int Status { get; set; }
         public string StatusName { get; set; }
         public string Location { get; set; }

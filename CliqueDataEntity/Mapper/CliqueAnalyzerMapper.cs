@@ -37,7 +37,7 @@ namespace CliqueDataEntity.Mapper
         {
             var model = new CliqueTagRequestModel();
 
-            model.AddedAt = response.AddedAt;
+            model.AddedAt = response.AddedAt==null?string.Empty:response.AddedAt.Value.ToShortDateString();
             model.FromDate = response.FromDate;
             model.Id = response.Id;
             model.Status = response.Status;

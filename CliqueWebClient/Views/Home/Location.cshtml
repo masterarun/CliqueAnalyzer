@@ -39,7 +39,8 @@
             </div>
         </div>
     </div>
-    <br />
+    <br/>
+    <img id="loadingImage" src="~/Content/Images/loading.gif" class="img-circle hide" style="vertical-align: middle; padding-left: 200px;" />
     <div id="Details" class="row hide">
         <div class="col-md-12">
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -113,7 +114,7 @@
 
     function GetGeoLcation() {
         debugger;
-
+        $("#loadingImage").addClass("show");
         var geocoder = new google.maps.Geocoder();
         var address = $("#pinclode").val();
         var lat = "";
@@ -137,6 +138,7 @@
         });
 
         $("#Details").removeClass("hide").addClass("show");
+        $("#loadingImage").removeClass("show").addClass("hide");
     }
 
     function initialize(_lat, _long) {

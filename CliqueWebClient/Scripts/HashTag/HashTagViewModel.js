@@ -45,7 +45,7 @@ var HashTagViewModel = function () {
 
     self.getHashTagTweet = function () {
         debugger;
-
+        $("#loadingImage").addClass("show");
        
 
         $.ajax({
@@ -63,7 +63,8 @@ var HashTagViewModel = function () {
             self.initialize(res);
 
             self.table = $("#tweetTable").DataTable({ responsive: true });
-          $("#Details").removeClass('hide').addClass('show');
+            $("#Details").removeClass('hide').addClass('show');
+            $("#loadingImage").removeClass("show").addClass("hide");
             //$('#MapDetails').addClass('in');
         }).error(function (ex) {
             debugger;

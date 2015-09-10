@@ -44,6 +44,7 @@ namespace CliqueDataEntity.Repository
             response = mapper.MapLocationRequestEntityToModel(selectedItem);
 
             response.CliqueTweetList = selectedItem.CliqueLocationTweets.Select(res => res.CliqueTweet).Select(mapper.MapTweetEntityToModel).ToList();
+            response.CliqueEventList = selectedItem.CliqueLocationEvents.Select(res => res.CliqueEvent).Select(mapper.MapEventEntityToModel).ToList();
             return response;
 
         }

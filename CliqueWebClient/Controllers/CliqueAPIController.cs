@@ -42,9 +42,6 @@ namespace CliqueWebClient.Controllers
         [HttpPost]
         public void AddHashTagRequest(CliqueTagRequestModel model)
         {
-
-         
-
             HashTagService service = new HashTagService();
             var responseModel = service.AddHashTagRequest(model);
 

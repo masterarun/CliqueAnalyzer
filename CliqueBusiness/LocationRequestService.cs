@@ -46,14 +46,33 @@ namespace CliqueService
 
         public bool GenerateLocationRequestDetails(int requestId)
         {
-            var currentRequest = GetLocationRequest(requestId).First();
-            var tweetRequest = new TweetRequest
-                    {
-                        Latitude = currentRequest.Latitude,
-                        Longitude = currentRequest.Longitude
-                    };
+            Console.WriteLine("GenerateLocationRequestDetails - Start");
+            var currentRequest = GetLocationRequest(requestId).First();           
 
-            
+            GetTweets(currentRequest, requestId);
+            GetEvents(currentRequest, requestId);
+            Console.WriteLine("GenerateLocationRequestDetails - End");
+            return true;
+        }
+
+        private void GetEvents(CliqueLocationRequestModel currentRequest, int requestId)
+        {
+            Console.WriteLine("GetEvents - Start");
+            var eventList = eventBusiness.GetEvents(currentRequest.City);
+            repository.AddEventLocationRequest(eventList, requestId);
+            Console.WriteLine("GetEvents - End");
+        }
+
+        private void GetTweets(CliqueLocationRequestModel currentRequest, int requestId)
+        {
+            Console.WriteLine("GetTweets - Start");
+            var tweetRequest = new TweetRequest
+            {
+                Latitude = currentRequest.Latitude,
+                Longitude = currentRequest.Longitude
+            };
+
+
             var tweetList = tweetBusiness.GetTweetsFromAPI(tweetRequest);
             repository.AddTweetLocationRequest(tweetList, requestId);
 
@@ -65,25 +84,29 @@ namespace CliqueService
                 repository.AddTweetLocationRequest(tweetList, requestId);
             }
 
-            var semantriaRequest = tweetList.Select(res => new SemantriaRequest { Guid = res.TweetIdStr, Text = res.Text });
+            //Get Score
+            var semantriaRequest = tweetList.Select(res => new SemantriaRequest { Guid = res.TweetIdStr, Text = res.Text }).ToList();
 
-            semantriaBusiness.GetScore(semantriaRequest);
-            repository.UpdateTweetScore(semantriaRequest);
+            foreach (var request in SplitList(semantriaRequest, 100))
+            {
+                semantriaBusiness.GetScore(request);
+                repository.UpdateTweetScore(semantriaRequest);
+            }
 
-            var eventList = eventBusiness.GetEvents(currentRequest.City);
-            repository.AddEventLocationRequest(eventList, requestId);
-
-            return true;
+            Console.WriteLine("GetTweets - End");
         }
 
-        public IEnumerable<IEnumerable<SemantriaRequest>> Split(IEnumerable<SemantriaRequest> list, int parts)
+        private List<List<SemantriaRequest>> SplitList(List<SemantriaRequest> locations, int size = 30)
         {
-            int i = 0;
-            var splits = from item in list
-                         group item by i++ % parts into part
-                         select part.AsEnumerable();
-            return splits;
-        }
+            List<List<SemantriaRequest>> list = new List<List<SemantriaRequest>>();
+
+            for (int i = 0; i < locations.Count; i += size)
+            {
+                list.Add(locations.GetRange(i, Math.Min(size, locations.Count - i)));
+            }
+
+            return list;
+        } 
 
 
 

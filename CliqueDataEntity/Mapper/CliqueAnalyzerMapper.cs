@@ -134,5 +134,23 @@ namespace CliqueDataEntity.Mapper
 
             return request;
         }
+
+        public CliqueEventModel MapEventEntityToModel(CliqueEvent request)
+        {
+            var model = new CliqueEventModel();
+
+            model.CreatedAt = request.CreatedAt;
+            model.Id = request.Id;
+            model.Description = request.Description;
+            model.EndDate = request.EndDate;
+            model.EventId = request.EventId;
+            model.Score = request.Score;
+            model.Name = request.Name;
+            model.StartDate = request.StartDate;
+            model.Venue = request.Venue;
+            model.ModifiedAt = request.ModifiedAt;
+
+            return model;
+        }
     }
 }

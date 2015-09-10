@@ -16,7 +16,7 @@ namespace HashTagJob
         // on an Azure Queue called queue.
         public static void ProcessHashTagQueueMessage([QueueTrigger("addhashtagrequest")] HashTagRequest request, TextWriter log)
         {
-            log.WriteLine("JOB-Stared");
+            log.WriteLine("addhashtagrequest - JOB-Stared");
             var service = new HashTagService();
             try
             {              
@@ -34,7 +34,7 @@ namespace HashTagJob
 
         public static void ProcessLocationQueueMessage([QueueTrigger("addlocationgrequest")] LocationRequest request, TextWriter log)
         {
-            log.WriteLine("JOB-Stared");
+            log.WriteLine("addlocationgrequest -JOB-Stared");
             var service = new LocationRequestService();
             try
             {

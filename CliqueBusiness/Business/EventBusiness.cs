@@ -52,21 +52,28 @@ namespace CliqueService.Business
 
             var requestUserTimeline = new HttpRequestMessage(System.Net.Http.HttpMethod.Get, url);
 
-            var httpClient = new HttpClient();
-            HttpResponseMessage responseUserTimeLine = httpClient.SendAsync(requestUserTimeline).Result;
-            var response = responseUserTimeLine.Content.ReadAsStringAsync().Result;
-            dynamic wrapper = JsonConvert.DeserializeObject<object>(response);
-            if (wrapper.events != null || wrapper.total_items != 0)
+            try
             {
-                if (wrapper.total_items == 1)
+                var httpClient = new HttpClient();
+                HttpResponseMessage responseUserTimeLine = httpClient.SendAsync(requestUserTimeline).Result;
+                var response = responseUserTimeLine.Content.ReadAsStringAsync().Result;
+                dynamic wrapper = JsonConvert.DeserializeObject<object>(response);
+                if (wrapper.events != null || wrapper.total_items != 0)
                 {
-                    eventList.Add(wrapper.events.@event as dynamic);
-                }
-                else
-                    eventList.AddRange((wrapper.events.@event as IEnumerable<dynamic>).ToList());
+                    if (wrapper.total_items == 1)
+                    {
+                        eventList.Add(wrapper.events.@event as dynamic);
+                    }
+                    else
+                        eventList.AddRange((wrapper.events.@event as IEnumerable<dynamic>).ToList());
 
-                if (wrapper.page_count > pageNumber)
-                    GetLocationEvents(location, ++pageNumber);
+                    if (wrapper.page_count > pageNumber)
+                        GetLocationEvents(location, ++pageNumber);
+                }
+            }
+            catch(Exception)
+            {
+                //Some time it throws eeror
             }
 
 

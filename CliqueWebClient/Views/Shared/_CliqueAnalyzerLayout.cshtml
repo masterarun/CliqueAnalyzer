@@ -27,10 +27,10 @@
                     </h1>
                 </div>
                 <div class="menu">
-                    <ul>
-                        <li><a href="@Url.Action("Index","Home")" cl class="active"><span>Home</span></a></li>
+                    <ul id="menunav">
+                        <li><a href="@Url.Action("Location","Home")" class="active"><span>Location</span></a></li>
                         <li><a href="@Url.Action("HashTag","Home")"><span>Hash Tag</span></a></li>
-                        <li><a href="@Url.Action("Location","Home")"><span>Location</span></a></li>
+                        <li><a href="@Url.Action("Index", "Home")"><span>Dashboard</span></a></li>
                     </ul>
                 </div>
                 <div class="clr">
@@ -78,6 +78,15 @@
     <script type="text/javascript">
         var baseUrl = '@Url.Content("~/")';
         //var baseUrl = 'http://cliqueanalyzer.azurewebsites.net/';
+        $(document).ready(function () {
+            $('#menunav li a').click(function (e) {
+                debugger;
+                $("#menunav").find(".active").removeClass("active");
+                $(this).addClass("active");
+
+            });
+
+        });
     </script>
 
 </body>

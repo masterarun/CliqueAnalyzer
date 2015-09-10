@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.Title = "Location Search";
+}
+
+<div class="left">
+    <h3>
+        <span>Location Request</span>
+    </h3>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color: orange; color: white; font-weight: bold; font-family: calibri;">
+        <h4 class=" panel-title">
+            Address Search
+        </h4>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <input type="text" id="apartment" class="form-control" placeholder="Apartment / House No." aria-describedby="sizing-addon2" data-bind="value: Apartment">
+            </div>
+            <div class="col-md-3">
+                <input type="text" id="street" class="form-control" placeholder="Street" aria-describedby="sizing-addon2" data-bind="value: Street">
+            </div>
+            <div class="col-md-3">
+                <input type="text" id="city" class="form-control" placeholder="City" aria-describedby="sizing-addon2" data-bind="value: CityName">
+            </div>
+            <div class="col-md-3">
+                <input type="text" id="state" class="form-control" placeholder="State" aria-describedby="sizing-addon2" data-bind="value: State">
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-3">
+                @*<div class="input-group input-group-lg"></div>*@
+                <input type="text" id="pinclode" class="form-control" placeholder="Pincode" aria-describedby="sizing-addon2" data-bind="value: CityName" onkeyup=" javascript: TriggerSubmit(); ">
+            </div>
+            <div class="col-md-3">
+                <button id="getDetailsBtn" type="submit" class="btn btn-primary" style="background-color: Orange; color: White; font-weight: bold; font-family: Calibri" onclick=" javscript:GetGeoLcation() ">Get Details</button>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div id="Details" class="row hide">
+        <div class="col-md-12">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="MapHeading" style="background-color: Orange">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#MapDetails"
+                               aria-expanded="true" aria-controls="collapseOne" style="color: White; font-weight: bold;
+                           font-weight: bold; font-family: Calibri;">Map View</a>
+                        </h4>
+                    </div>
+                    <div id="MapDetails" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="MapHeading">
+                        <div class="panel-body">
+                            <div id="map"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="TweetHeading" style="background-color: Orange">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                               href="#TweetDetails" aria-expanded="false" aria-controls="collapseTwo" style="color: White;
+                                font-weight: bold; font-family: calibri;">Tweet Score Details</a>
+                        </h4>
+                    </div>
+                    <div id="TweetDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="TweetHeading">
+                        <div class="panel-body">
+                            <h4>Tweet Details</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="CrimeHeading" style="background-color: Orange">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                               href="#CrimeDetails" aria-expanded="false" aria-controls="collapseTwo" style="color: White;
+                               font-weight: bold; font-family: Calibri;">Crime Score Details</a>
+                        </h4>
+                    </div>
+                    <div id="CrimeDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="CrimeHeading">
+                        <div class="panel-body">
+                            <h4>Crime Details</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="UnemployementHeading" style="background-color: Orange">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                               href="#UnemployementDetails" aria-expanded="false" aria-controls="collapseTwo" style="color: White;
+                           font-weight: bold; font-family: Calibri;">Unemployement Score Details</a>
+                        </h4>
+                    </div>
+                    <div id="UnemployementDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="UnemployementHeading">
+                        <div class="panel-body">
+                            <h4>Unemployement Details</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function TriggerSubmit() {
+        if (event.keyCode === 13) {
+            $("#getDetailsBtn").click();
+        }
+    }
+
+    function GetGeoLcation() {
+        debugger;
+
+        var geocoder = new google.maps.Geocoder();
+        var address = $("#pinclode").val();
+        var lat = "";
+        var long = "";
+        //var styles = [{
+        //    stylers: [
+        //        { hue: "#00ffe6" }, { saturation: -20 }]},
+        //        { featureType: "road", elementType: "geometry", stylers: [{ lightness: 100 }, { visibility: "simplified" }] },
+        //        { featureType: "road", elementType: "labels", stylers: [{ visibility: "off" }] }
+        //];
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                lat = (results[0].geometry.location.lat());
+                long = (results[0].geometry.location.lng());
+
+                initialize(lat, long);
+
+            } else {
+                alert("Geolocation api failed.");
+            }
+        });
+
+        $("#Details").removeClass("hide").addClass("show");
+    }
+
+    function initialize(_lat, _long) {
+        // Create the map.
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 18,
+            center: { lat: _lat, lng: _long },
+            mapTypeId: google.maps.MapTypeId.HYBRID,
+            heading: 90,
+            tilt: 30,
+            //tilt: 45
+            //labels:true,
+            //setOptions:{styles: styles},
+        });
+    }
+    /// google.maps.event.addDomListener(window, 'load', initialize);
+</script>

@@ -52,7 +52,7 @@ var HashTagViewModel = function () {
 
             type: "Get",
             contentType: "application/json",
-            url: baseUrl + "api/CliqueAPI/GetHashTagTweets?tag=" + self.hashTagRequestModel().tag() + "&location=" + self.hashTagRequestModel().location() + "&fromDate=" + self.hashTagRequestModel().fromDate() + "&toDate=" + self.hashTagRequestModel().toDate()
+            url: baseUrl + "api/CliqueAPI/GetHashTagDetails?tag=" + self.hashTagRequestModel().tag() + "&location=" + self.hashTagRequestModel().location() + "&fromDate=" + self.hashTagRequestModel().fromDate() + "&toDate=" + self.hashTagRequestModel().toDate()
         }).done(function (res) {
             debugger;
             if (self.table) {

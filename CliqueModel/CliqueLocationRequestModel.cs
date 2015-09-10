@@ -17,6 +17,8 @@ namespace CliqueModel
         public string StatusName { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
+        public DateTime FromDate { get; set; }
+        public DateTime ToDate { get; set; }
 
         public virtual ICollection<CliqueEventModel> CliqueEventList { get; set; }
         public virtual ICollection<CliqueTweetModel> CliqueTweetList { get; set; }

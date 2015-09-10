@@ -28,23 +28,25 @@ namespace HashTagJob
             {
                 service.UpdateHashTagStatus(request.Id, CliqueModel.CliqueStatus.Error);
                 log.WriteLine(e.Message);
+                log.WriteLine(e.StackTrace);
             }
         }
 
         public static void ProcessQueueMessage([QueueTrigger("addlocationgrequest")] LocationRequest request, TextWriter log)
         {
             log.WriteLine("JOB-Stared");
-            var service = new HashTagService();
+            var service = new LocationRequestService();
             try
             {
-                service.UpdateHashTagStatus(request.LocationId, CliqueModel.CliqueStatus.Queued);
-                service.GenerateHashTagDetails(request.LocationId);
-                service.UpdateHashTagStatus(request.LocationId, CliqueModel.CliqueStatus.Processed);
+                service.UpdateLocationRequestStatus(request.LocationId, CliqueModel.CliqueStatus.Queued);
+                service.GenerateLocationRequestDetails(request.LocationId);
+                service.UpdateLocationRequestStatus(request.LocationId, CliqueModel.CliqueStatus.Processed);
             }
             catch (Exception e)
             {
-                service.UpdateHashTagStatus(request.LocationId, CliqueModel.CliqueStatus.Error);
+                service.UpdateLocationRequestStatus(request.LocationId, CliqueModel.CliqueStatus.Error);
                 log.WriteLine(e.Message);
+                log.WriteLine(e.StackTrace);
             }
         }
     }

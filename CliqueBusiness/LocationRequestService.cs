@@ -35,7 +35,7 @@ namespace CliqueService
             repository.UpdateLocationStatus(id, status);
         }
 
-        public CliqueLocationRequestModel GetHashTagRequestWithDetails(CliqueLocationRequestModel model)
+        public CliqueLocationRequestModel GetLocationRequestWithDetails(CliqueLocationRequestModel model)
         {
             return repository.GetLocationRequestWithDetails(model);
         }

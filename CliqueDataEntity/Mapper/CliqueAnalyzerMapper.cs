@@ -109,11 +109,11 @@ namespace CliqueDataEntity.Mapper
             var request = new CliqueLocationRequest();
             request.Address = model.Address;
             request.City = model.City;
-            request.State = model.City;
+            request.State = model.State;
             request.Status = model.Status;
             request.Street = model.Street;
             request.Latitude = model.Latitude;
-            request.Longitude = model.Longitude;
+            request.Longitude = model.Longitude;           
             return request;
         }
     }

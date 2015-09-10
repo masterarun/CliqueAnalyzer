@@ -25,7 +25,7 @@ namespace CliqueWebClient.Controllers
         }
 
         [HttpGet]
-        public CliqueTagRequestModel GetHashTagTweets(string tag, string location, DateTime fromDate, DateTime toDate)
+        public CliqueTagRequestModel GetHashTagDetails(string tag, string location, DateTime fromDate, DateTime toDate)
         {
             var model = new CliqueTagRequestModel
             {
@@ -55,6 +55,27 @@ namespace CliqueWebClient.Controllers
 
         }
 
+        [HttpGet]
+        public IList<CliqueLocationRequestModel> GetAllLocationRequest()
+        {
+            LocationRequestService service = new LocationRequestService();
+            return service.GetLocationRequest();
+        }
+
+        [HttpGet]
+        public CliqueLocationRequestModel GetLocationRequestDetails(string address, DateTime fromDate, DateTime toDate)
+        {
+            var model = new CliqueLocationRequestModel
+            {
+                Address = address,               
+                FromDate = fromDate,
+                ToDate = toDate
+            };
+
+            LocationRequestService service = new LocationRequestService();
+            return service.GetLocationRequestWithDetails(model);
+        }
+
         [HttpPost]
         public void AddLocationRequest(CliqueLocationRequestModel model)
         {
@@ -66,7 +87,7 @@ namespace CliqueWebClient.Controllers
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
             CloudQueue thumbnailRequestQueue = queueClient.GetQueueReference("addhashtagrequest");
             thumbnailRequestQueue.CreateIfNotExists();
-            var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(new HashTagRequest { Id = model.Id }));
+            var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(new LocationRequest { LocationId = model.Id }));
             thumbnailRequestQueue.AddMessage(queueMessage);
 
         }

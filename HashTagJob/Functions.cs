@@ -14,7 +14,7 @@ namespace HashTagJob
     {
         // This function will get triggered/executed when a new message is written 
         // on an Azure Queue called queue.
-        public static void ProcessQueueMessage([QueueTrigger("addhashtagrequest")] HashTagRequest request, TextWriter log)
+        public static void ProcessHashTagQueueMessage([QueueTrigger("addhashtagrequest")] HashTagRequest request, TextWriter log)
         {
             log.WriteLine("JOB-Stared");
             var service = new HashTagService();
@@ -32,7 +32,7 @@ namespace HashTagJob
             }
         }
 
-        public static void ProcessQueueMessage([QueueTrigger("addlocationgrequest")] LocationRequest request, TextWriter log)
+        public static void ProcessLocationQueueMessage([QueueTrigger("addlocationgrequest")] LocationRequest request, TextWriter log)
         {
             log.WriteLine("JOB-Stared");
             var service = new LocationRequestService();

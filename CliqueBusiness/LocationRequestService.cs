@@ -66,6 +66,7 @@ namespace CliqueService
             }
 
             var semantriaRequest = tweetList.Select(res => new SemantriaRequest { Guid = res.TweetIdStr, Text = res.Text });
+
             semantriaBusiness.GetScore(semantriaRequest);
             repository.UpdateTweetScore(semantriaRequest);
 
@@ -73,6 +74,15 @@ namespace CliqueService
             repository.AddEventLocationRequest(eventList, requestId);
 
             return true;
+        }
+
+        public IEnumerable<IEnumerable<SemantriaRequest>> Split(IEnumerable<SemantriaRequest> list, int parts)
+        {
+            int i = 0;
+            var splits = from item in list
+                         group item by i++ % parts into part
+                         select part.AsEnumerable();
+            return splits;
         }
 
 

@@ -42,6 +42,9 @@ namespace CliqueWebClient.Controllers
         [HttpPost]
         public void AddHashTagRequest(CliqueTagRequestModel model)
         {
+
+         
+
             HashTagService service = new HashTagService();
             var responseModel = service.AddHashTagRequest(model);
 
@@ -85,7 +88,7 @@ namespace CliqueWebClient.Controllers
 
             var storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzureWebJobsStorage"].ToString());
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-            CloudQueue thumbnailRequestQueue = queueClient.GetQueueReference("addhashtagrequest");
+            CloudQueue thumbnailRequestQueue = queueClient.GetQueueReference("addlocationgrequest");
             thumbnailRequestQueue.CreateIfNotExists();
             var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(new LocationRequest { LocationId = model.Id }));
             thumbnailRequestQueue.AddMessage(queueMessage);

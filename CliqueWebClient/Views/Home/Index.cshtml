@@ -45,37 +45,40 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-bind="showModal: displayAddHashTagModal">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-bind="showModal: displayAddHashTagModal" style="vertical-align: middle">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #e5e5e5">
-                <button type="button" class="close" data-dismiss="modal" data-bind="click: hideTagRequestModal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-header" style="background-color: orange; color: white; font-weight: bold; font-family: calibri; height: 50px;">
+                <button type="button" class="close" data-dismiss="modal" data-bind="click: hideTagRequestModal" aria-label="Close">
+                    <span aria-hidden="true" style="font-weight: bold; color: white">&times;</span>
+                </button>
                 <h4 class="modal-title" id="myModalLabel">Add HashTag Request</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-lg-6 col-sm-6">
+                    <div class="col-md-6">
                         <label for="InputName">Hash Tag</label>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="HashTag" data-bind="value: hashTagRequestModel().tag">
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-6">
+                    <div class="col-md-6">
                         <label for="InputName">City</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="HashTag" data-bind="value: hashTagRequestModel().location">
+                            <input type="text" class="form-control" placeholder="City" data-bind="value: hashTagRequestModel().location">
                         </div>
                     </div>
 
                 </div>
+                <br />
                 <div class="row">
-                    <div class="col-lg-6 col-sm-6">
+                    <div class="col-md-6">
                         <label for="InputName">From Date</label>
                         <div class="input-group">
                             <input type="date" class="form-control" data-bind="value: hashTagRequestModel().fromDate">
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-6">
+                    <div class="col-md-6">
                         <label for="InputName">To Date</label>
                         <div class="input-group">
                             <input type="date" class="form-control" data-bind="value: hashTagRequestModel().toDate">
@@ -86,7 +89,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="click: hideTagRequestModal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" data-bind="click: addHashTagRequest">Save changes</button>
+                <button type="button" class="btn btn-primary" style="background-color: Orange; color: White; font-weight: bold; font-family: Calibri"
+                        data-dismiss="modal" data-bind="click: addHashTagRequest">
+                    Save Request
+                </button>
             </div>
         </div>
     </div>

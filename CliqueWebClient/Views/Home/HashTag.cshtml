@@ -7,40 +7,50 @@
         <span>Hash Tag Request</span>
     </h3>
 </div>
-<div class="row">
-    <div class="col-md-2">
-        @*<label for="InputName">HashTag</label>*@
-        <div class="input-group">
-            <span class="input-group-addon">@@</span>
-            <input type="text" class="form-control" placeholder="HashTag" data-bind="value: hashTagRequestModel().tag">
-        </div>
+
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color: orange; color: white; font-weight: bold; font-family: calibri;">
+        <h4 class=" panel-title">
+            Hash Tag Search
+        </h4>
     </div>
-    <div class="col-md-2">
-        @*<label for="InputName">Location</label>*@
-        <div class="input-group">
-            <span class="input-group-addon">@@</span>
-            <input type="text" class="form-control" placeholder="Location" data-bind="value: hashTagRequestModel().location">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2">
+                @*<label for="InputName">HashTag</label>*@
+                <div class="input-group">
+                    <span class="input-group-addon">@@</span>
+                    <input type="text" class="form-control" placeholder="HashTag" data-bind="value: hashTagRequestModel().tag">
+                </div>
+            </div>
+            <div class="col-md-2">
+                @*<label for="InputName">Location</label>*@
+                <div class="input-group">
+                    <span class="input-group-addon">@@</span>
+                    <input type="text" class="form-control" placeholder="Location" data-bind="value: hashTagRequestModel().location">
+                </div>
+            </div>
+            <div class="col-md-3">
+                @*<label for="InputName">From Date</label>*@
+                <div class="input-group">
+                    <span class="input-group-addon">@@</span>
+                    <input type="date" class="form-control" placeholder="From Date" data-bind="value: hashTagRequestModel().fromDate">
+                </div>
+            </div>
+            <div class="col-md-3">
+                @*<label for="InputName">To Date</label>*@
+                <div class="input-group">
+                    <span class="input-group-addon">@@</span>
+                    <input type="date" class="form-control" placeholder="To Date" data-bind="value: hashTagRequestModel().toDate" onkeyup="javascript: TriggerSubmit();">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button id="getMapBtn" type="button" class="btn btn-primary" style="background-color: Orange; color: White; font-weight: bold; font-family: Calibri" data-dismiss="modal" data-bind="click: getHashTagTweet">Get Details</button>
+            </div>
         </div>
-    </div>
-    <div class="col-md-3">
-        @*<label for="InputName">From Date</label>*@
-        <div class="input-group">
-            <span class="input-group-addon">@@</span>
-            <input type="date" class="form-control" placeholder="From Date" data-bind="value: hashTagRequestModel().fromDate">
-        </div>
-    </div>
-    <div class="col-md-3">
-        @*<label for="InputName">To Date</label>*@
-        <div class="input-group">
-            <span class="input-group-addon">@@</span>
-            <input type="date" class="form-control" placeholder="To Date" data-bind="value: hashTagRequestModel().toDate" onkeyup="javascript: TriggerSubmit();">
-        </div>
-    </div>
-    <div class="col-md-2">
-        <button id="getMapBtn" type="button" class="btn btn-primary" style="background-color: Orange; color: White; font-weight: bold; font-family: Calibri" data-dismiss="modal" data-bind="click: getHashTagTweet">Get Details</button>
     </div>
 </div>
-<br/>
+<br />
 <div id="Details" class="row hide">
     <div class="col-md-12">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -103,7 +113,6 @@
         $(document).ready(function () {
             var viewModel = new HashTagViewModel();
             ko.applyBindings(viewModel);
-            
         });
     </script>
 }

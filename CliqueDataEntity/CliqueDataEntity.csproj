@@ -63,6 +63,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CliqueAnalyzerDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="CliqueEvent.cs">
+      <DependentUpon>CliqueAnalyzerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CliqueLocationEvent.cs">
+      <DependentUpon>CliqueAnalyzerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CliqueLocationRequest.cs">
+      <DependentUpon>CliqueAnalyzerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CliqueLocationTweet.cs">
+      <DependentUpon>CliqueAnalyzerDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="CliqueTagRequest.cs">
       <DependentUpon>CliqueAnalyzerDB.tt</DependentUpon>
     </Compile>

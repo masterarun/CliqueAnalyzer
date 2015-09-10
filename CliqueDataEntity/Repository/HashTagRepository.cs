@@ -27,13 +27,12 @@ namespace CliqueDataEntity.Repository
             return model;
         }
 
-        public IList<CliqueTagRequestModel> GetHashTagRequestDetails(int id)
+        public IList<CliqueTagRequestModel> GetHashTagRequest(int id)
         {
             return dataEntity.CliqueTagRequests.Where(res => res.Id == id || id == 0).Select(mapper.MapHashTagEntityToModel).ToList();
         }
 
-
-        public CliqueTagRequestModel GetHashTagTweets(CliqueTagRequestModel model)
+        public CliqueTagRequestModel GetHashTagRequestWithDetails(CliqueTagRequestModel model)
         {
             CliqueTagRequestModel response;
             var selectedTag = dataEntity.CliqueTagRequests.FirstOrDefault(res => res.Tag == model.Tag && res.Location == model.Location);
@@ -70,7 +69,7 @@ namespace CliqueDataEntity.Repository
 
         }
 
-        public void UpdateHashTagStatus(int id, CliqueTagRequestStatus status)
+        public void UpdateHashTagStatus(int id, CliqueStatus status)
         {
             var selectedTag = dataEntity.CliqueTagRequests.FirstOrDefault(res => res.Id == id);
             //&& res.FromDate == model.FromDate && res.ToDate == model.ToDate);

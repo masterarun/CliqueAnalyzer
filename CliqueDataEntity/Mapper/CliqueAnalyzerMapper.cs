@@ -7,31 +7,9 @@ using System.Threading.Tasks;
 
 namespace CliqueDataEntity.Mapper
 {
-    public class City
-    {
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
-    }
 
     public class CliqueAnalyzerMapper
     {
-        private List<City> cityList = new List<City> {
-            new City{ Latitude = 21.215500, Longitude = 86.122200},
-            new City{ Latitude = 28.771646, Longitude = 77.507561},
-            new City{ Latitude = 9.512137, Longitude = 77.634087},
-            new City{ Latitude = 9.548395, Longitude = 78.591637},
-            new City{ Latitude = 26.937834, Longitude = 81.188324},
-            new City{ Latitude = 25.454794, Longitude = 78.133957},
-            new City{ Latitude = 25.424120, Longitude = 77.657990},
-            new City{ Latitude = 15.460252, Longitude = 75.010284},
-            new City{ Latitude = 20.385181, Longitude = 72.911453},
-            new City{ Latitude = 23.673944, Longitude = 86.952393},
-        };
-        Random rnd = new Random();
-        public CliqueAnalyzerMapper()
-        {            
-            
-        }
 
         public CliqueTagRequestModel MapHashTagEntityToModel(CliqueTagRequest response)
         {
@@ -46,7 +24,7 @@ namespace CliqueDataEntity.Mapper
             model.Location = response.Location;
             model.Latitude = response.Latitude;
             model.Longitude = response.Longitude;
-            model.StatusName = ((CliqueTagRequestStatus)response.Status).ToString();
+            model.StatusName = ((CliqueStatus)response.Status).ToString();
           
             return model;
         }
@@ -58,7 +36,7 @@ namespace CliqueDataEntity.Mapper
             request.AddedAt = DateTime.Now.ToUniversalTime();
             request.FromDate = model.FromDate;
 
-            request.Status = (int)CliqueTagRequestStatus.New;
+            request.Status = (int)CliqueStatus.New;
             request.Tag = model.Tag;
             request.ToDate = model.ToDate;
             request.Location = model.Location;
@@ -70,9 +48,7 @@ namespace CliqueDataEntity.Mapper
 
         public CliqueTweetModel MapTweetEntityToModel(CliqueTweet response)
         {
-            var cityId = rnd.Next(0, 9);
-            var currentCity = cityList[cityId];
-
+          
             var model = new CliqueTweetModel();
 
             model.AddedAt = response.AddedAt;
@@ -111,5 +87,34 @@ namespace CliqueDataEntity.Mapper
             return request;
         }
 
+        public CliqueLocationRequestModel MapLocationRequestEntityToModel(CliqueLocationRequest response)
+        {
+            var model = new CliqueLocationRequestModel();
+
+            model.Address = response.Address;
+            model.City = response.City;
+            model.Id = response.Id;
+            model.State = response.State;
+            model.Status = response.Status;
+            model.Street = response.Street;
+            model.StatusName = ((CliqueStatus)response.Status).ToString();
+            model.Latitude = response.Latitude;
+            model.Longitude = response.Longitude;
+
+            return model;
+        }
+
+        public CliqueLocationRequest MapLocationRequestModelToEntity(CliqueLocationRequestModel model)
+        {
+            var request = new CliqueLocationRequest();
+            request.Address = model.Address;
+            request.City = model.City;
+            request.State = model.City;
+            request.Status = model.Status;
+            request.Street = model.Street;
+            request.Latitude = model.Latitude;
+            request.Longitude = model.Longitude;
+            return request;
+        }
     }
 }

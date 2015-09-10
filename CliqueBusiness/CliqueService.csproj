@@ -48,6 +48,7 @@
     <Compile Include="Business\SemantriaBusiness.cs" />
     <Compile Include="Business\TweetBusiness.cs" />
     <Compile Include="HashTagService.cs" />
+    <Compile Include="LocationRequestService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

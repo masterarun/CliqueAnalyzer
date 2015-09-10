@@ -20,13 +20,30 @@ namespace HashTagJob
             var service = new HashTagService();
             try
             {              
-                service.UpdateHashTagStatus(request.Id, CliqueModel.CliqueTagRequestStatus.Queued);
-                service.PullHashTagTweets(request.Id);
-                service.UpdateHashTagStatus(request.Id, CliqueModel.CliqueTagRequestStatus.Processed);
+                service.UpdateHashTagStatus(request.Id, CliqueModel.CliqueStatus.Queued);
+                service.GenerateHashTagDetails(request.Id);
+                service.UpdateHashTagStatus(request.Id, CliqueModel.CliqueStatus.Processed);
             }
             catch(Exception e)
             {
-                service.UpdateHashTagStatus(request.Id, CliqueModel.CliqueTagRequestStatus.Error);
+                service.UpdateHashTagStatus(request.Id, CliqueModel.CliqueStatus.Error);
+                log.WriteLine(e.Message);
+            }
+        }
+
+        public static void ProcessQueueMessage([QueueTrigger("addlocationgrequest")] LocationRequest request, TextWriter log)
+        {
+            log.WriteLine("JOB-Stared");
+            var service = new HashTagService();
+            try
+            {
+                service.UpdateHashTagStatus(request.LocationId, CliqueModel.CliqueStatus.Queued);
+                service.GenerateHashTagDetails(request.LocationId);
+                service.UpdateHashTagStatus(request.LocationId, CliqueModel.CliqueStatus.Processed);
+            }
+            catch (Exception e)
+            {
+                service.UpdateHashTagStatus(request.LocationId, CliqueModel.CliqueStatus.Error);
                 log.WriteLine(e.Message);
             }
         }

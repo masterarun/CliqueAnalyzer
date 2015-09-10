@@ -17,6 +17,7 @@ namespace CliqueDataEntity
         public CliqueTweet()
         {
             this.CliqueTagTweetMappings = new HashSet<CliqueTagTweetMapping>();
+            this.CliqueLocationTweets = new HashSet<CliqueLocationTweet>();
         }
     
         public int Id { get; set; }
@@ -33,5 +34,6 @@ namespace CliqueDataEntity
         public string Location { get; set; }
     
         public virtual ICollection<CliqueTagTweetMapping> CliqueTagTweetMappings { get; set; }
+        public virtual ICollection<CliqueLocationTweet> CliqueLocationTweets { get; set; }
     }
 }

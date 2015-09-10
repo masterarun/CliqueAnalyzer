@@ -4,14 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CliqueModel
+namespace CliqueModel.QueueRequest
 {
-    public enum CliqueStatus
+    public class LocationRequest
     {
-        New = 0,
-        Queued = 1,
-        Processed = 2,
-        Error = 3
-
+        public int LocationId { get; set; }
     }
 }

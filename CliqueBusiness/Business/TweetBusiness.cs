@@ -16,6 +16,14 @@ namespace CliqueService.Business
         //private const string TwitterConsumerKey = "unZjcnD6BB0vbU5TfTiXPGnVe";
         //private const string TwitterConsumerSecret = "7VoiPTrbqaq1vnuu87U4CAbYDyfiqJwlSanN6LvzGkfQ43f1fj";
 
+        public class TweetRequest
+        {
+            public string Text { get; set; }
+            public string Latitude { get; set; }
+            public string Longitude { get; set; }
+            public string MaxId { get; set; }
+        }
+
         private static string GetAccessToken()
         {
             var httpClient = new HttpClient();
@@ -33,17 +41,24 @@ namespace CliqueService.Business
             return item["access_token"];
         }
 
-        public IList<CliqueTweetModel> GetTweetsFromAPI(CliqueTagRequestModel requestModel, string max_id = "")
+        public IList<CliqueTweetModel> GetTweetsFromAPI(TweetRequest request)
         {
-            string url = "";
+            string url = "https://api.twitter.com/1.1/search/tweets.json?";
             
-            if (string.IsNullOrEmpty(max_id))
+            if (!string.IsNullOrEmpty(request.Text))
             {                
-                url = string.Format("https://api.twitter.com/1.1/search/tweets.json?q={2}&geocode={0},{1},100mi&count=100", requestModel.Latitude, requestModel.Longitude, requestModel.Tag);                
+                url = url + string.Format("q={0}&", request.Text);                
             }
-            else
-                url = string.Format("https://api.twitter.com/1.1/search/tweets.json?q={2}&geocode={0},{1},100mi&count=100&max_id={3}", requestModel.Latitude, requestModel.Longitude, requestModel.Tag, max_id);                
+            if (!string.IsNullOrEmpty(request.Latitude))
+            {
+                url = url + string.Format("geocode={0},{1},100mi&", request.Latitude, request.Longitude);
+            }
+            if (!string.IsNullOrEmpty(request.MaxId))
+            {
+                url = url + string.Format("max_id={0}&", request.MaxId);
+            }
 
+            url = url.TrimEnd('&');
 
             var requestUserTimeline = new HttpRequestMessage(System.Net.Http.HttpMethod.Get, url);
             var accessToken = GetAccessToken();
@@ -66,8 +81,8 @@ namespace CliqueService.Business
                     PostedAt = item.created_at.Value,
                     ProfileImageURL = item.user.profile_image_url_https.Value,
                     TweetIdStr = item.id_str.Value,
-                    Latitude = geoItem == null ? requestModel.Latitude: geoItem.coordinates[0],
-                    Longitude = geoItem == null ? requestModel.Longitude : geoItem.coordinates[1],
+                    Latitude = geoItem == null ? request.Latitude : geoItem.coordinates[0],
+                    Longitude = geoItem == null ? request.Longitude : geoItem.coordinates[1],
                     Location = item.user.location
                 });
 

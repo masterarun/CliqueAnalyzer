@@ -21,7 +21,7 @@ namespace CliqueWebClient.Controllers
         public IList<CliqueTagRequestModel> GetAllHashTag()
         {
             HashTagService service = new HashTagService();
-            return service.GetHashTagRequestDetails();
+            return service.GetHashTagRequest();
         }
 
         [HttpGet]
@@ -36,7 +36,7 @@ namespace CliqueWebClient.Controllers
             };
 
             HashTagService service = new HashTagService();
-            return service.GetHashTagTweets(model);
+            return service.GetHashTagRequestWithDetails(model);
         }
 
         [HttpPost]
@@ -44,6 +44,22 @@ namespace CliqueWebClient.Controllers
         {
             HashTagService service = new HashTagService();
             var responseModel = service.AddHashTagRequest(model);
+
+
+            var storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzureWebJobsStorage"].ToString());
+            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+            CloudQueue thumbnailRequestQueue = queueClient.GetQueueReference("addhashtagrequest");
+            thumbnailRequestQueue.CreateIfNotExists();
+            var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(new HashTagRequest { Id = model.Id }));
+            thumbnailRequestQueue.AddMessage(queueMessage);
+
+        }
+
+        [HttpPost]
+        public void AddLocationRequest(CliqueLocationRequestModel model)
+        {
+            LocationRequestService service = new LocationRequestService();
+            var responseModel = service.AddLocationRequest(model);
 
 
             var storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzureWebJobsStorage"].ToString());

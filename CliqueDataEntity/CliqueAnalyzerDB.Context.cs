@@ -28,5 +28,9 @@ namespace CliqueDataEntity
         public virtual DbSet<CliqueTagRequest> CliqueTagRequests { get; set; }
         public virtual DbSet<CliqueTagTweetMapping> CliqueTagTweetMappings { get; set; }
         public virtual DbSet<CliqueTweet> CliqueTweets { get; set; }
+        public virtual DbSet<CliqueLocationEvent> CliqueLocationEvents { get; set; }
+        public virtual DbSet<CliqueLocationRequest> CliqueLocationRequests { get; set; }
+        public virtual DbSet<CliqueLocationTweet> CliqueLocationTweets { get; set; }
+        public virtual DbSet<CliqueEvent> CliqueEvents { get; set; }
     }
 }

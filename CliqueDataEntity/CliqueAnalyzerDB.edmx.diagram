@@ -10,6 +10,14 @@
         <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueTweet" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueTagTweetMapping_ToCliqueTag" ManuallyRouted="false" />
         <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueTagTweetMapping_ToCliqueTweet" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueLocationEvent" Width="1.5" PointX="3" PointY="9.75" />
+        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueLocationRequest" Width="1.5" PointX="0.75" PointY="9.375" />
+        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueLocationTweet" Width="1.5" PointX="3" PointY="5.625" />
+        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueClaimRequest" />
+        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueClaimRequest" />
+        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueTwitter" />
+        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueEvent" Width="1.5" PointX="5.375" PointY="1" />
+        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueEvent" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

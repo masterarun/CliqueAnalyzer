@@ -20,38 +20,42 @@ namespace CliqueService
             business = new TweetBusiness();
         }
 
-
         public CliqueTagRequestModel AddHashTagRequest(CliqueTagRequestModel model)
         {
             return repository.AddHashTagRequest(model);
         }
 
-        public IList<CliqueTagRequestModel> GetHashTagRequestDetails(int id = 0)
+        public IList<CliqueTagRequestModel> GetHashTagRequest(int id = 0)
         {
-            return repository.GetHashTagRequestDetails(id);
+            return repository.GetHashTagRequest(id);
         }
 
-        public void UpdateHashTagStatus(int id, CliqueTagRequestStatus status)
+        public void UpdateHashTagStatus(int id, CliqueStatus status)
         {
             repository.UpdateHashTagStatus(id, status);
         }
 
-
-
-        public CliqueTagRequestModel GetHashTagTweets(CliqueTagRequestModel model)
+        public CliqueTagRequestModel GetHashTagRequestWithDetails(CliqueTagRequestModel model)
         {
-            return repository.GetHashTagTweets(model);
+            return repository.GetHashTagRequestWithDetails(model);
         }
 
-        public bool PullHashTagTweets(int requestId)
+        public bool GenerateHashTagDetails(int requestId)
         {
-            var currentRequest = GetHashTagRequestDetails(requestId).First();
-            var tweetList = business.GetTweetsFromAPI(currentRequest);
+            var currentRequest = GetHashTagRequest(requestId).First();
+            var tweetRequest = new CliqueService.Business.TweetBusiness.TweetRequest
+            {
+                Text = currentRequest.Tag,
+                Latitude = currentRequest.Latitude,
+                Longitude = currentRequest.Longitude
+            };
+            var tweetList = business.GetTweetsFromAPI(tweetRequest);
             repository.AddTweetToHashTag(tweetList, requestId);
 
             while (tweetList.Count() == 100)
             {
-                tweetList = business.GetTweetsFromAPI(currentRequest, tweetList.Last().TweetIdStr);
+                tweetRequest.MaxId = tweetList.Last().TweetIdStr;
+                tweetList = business.GetTweetsFromAPI(tweetRequest);
                 repository.AddTweetToHashTag(tweetList, requestId);
             }
             return true;

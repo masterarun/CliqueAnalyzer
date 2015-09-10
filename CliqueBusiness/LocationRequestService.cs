@@ -12,12 +12,16 @@ namespace CliqueService
     public class LocationRequestService
     {
         private LocationRequestRepository repository;
-        private TweetBusiness business;
+        private TweetBusiness tweetBusiness;
+        private SemantriaBusiness semantriaBusiness;
+        private EventBusiness eventBusiness;
 
         public LocationRequestService()
         {
             repository = new LocationRequestRepository();
-            business = new TweetBusiness();
+            tweetBusiness = new TweetBusiness();
+            semantriaBusiness = new SemantriaBusiness();
+            eventBusiness = new EventBusiness();
         }
 
         public CliqueLocationRequestModel AddLocationRequest(CliqueLocationRequestModel model)
@@ -43,23 +47,31 @@ namespace CliqueService
         public bool GenerateLocationRequestDetails(int requestId)
         {
             var currentRequest = GetLocationRequest(requestId).First();
-            var tweetRequest = new CliqueService.Business.TweetBusiness.TweetRequest
+            var tweetRequest = new TweetRequest
                     {
                         Latitude = currentRequest.Latitude,
                         Longitude = currentRequest.Longitude
                     };
 
             
-            var tweetList = business.GetTweetsFromAPI(tweetRequest);
+            var tweetList = tweetBusiness.GetTweetsFromAPI(tweetRequest);
             repository.AddTweetLocationRequest(tweetList, requestId);
 
             while (tweetList.Count() == 100)
             {
                 tweetRequest.MaxId = tweetList.Last().TweetIdStr;
 
-                tweetList = business.GetTweetsFromAPI(tweetRequest);
+                tweetList = tweetBusiness.GetTweetsFromAPI(tweetRequest);
                 repository.AddTweetLocationRequest(tweetList, requestId);
             }
+
+            var semantriaRequest = tweetList.Select(res => new SemantriaRequest { Guid = res.TweetIdStr, Text = res.Text });
+            semantriaBusiness.GetScore(semantriaRequest);
+            repository.UpdateTweetScore(semantriaRequest);
+
+            var eventList = eventBusiness.GetEvents(currentRequest.City);
+            repository.AddEventLocationRequest(eventList, requestId);
+
             return true;
         }
 

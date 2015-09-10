@@ -43,7 +43,7 @@ namespace CliqueService
         public bool GenerateHashTagDetails(int requestId)
         {
             var currentRequest = GetHashTagRequest(requestId).First();
-            var tweetRequest = new CliqueService.Business.TweetBusiness.TweetRequest
+            var tweetRequest = new TweetRequest
             {
                 Text = currentRequest.Tag,
                 Latitude = currentRequest.Latitude,

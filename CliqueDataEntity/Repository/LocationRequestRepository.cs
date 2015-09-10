@@ -70,6 +70,28 @@ namespace CliqueDataEntity.Repository
 
         }
 
+        public void AddEventLocationRequest(IList<CliqueEventModel> eventList, int id)
+        {
+            foreach (var item in eventList)
+            {
+                var request = mapper.MapEventModelToEntity(item);
+                var existingTweet = dataEntity.CliqueEvents.FirstOrDefault(res => res.EventId == item.EventId);
+                if (existingTweet == null)
+                {
+                    dataEntity.CliqueEvents.Add(request);
+                    dataEntity.SaveChanges();
+                    item.Id = request.Id;
+                }
+                else
+                    item.Id = existingTweet.Id;
+
+
+                dataEntity.CliqueLocationEvents.Add(new CliqueLocationEvent { RequestId = id, EventId = item.Id });
+                dataEntity.SaveChanges();
+            }
+
+        }
+
         public void UpdateLocationStatus(int id, CliqueStatus status)
         {
             var selectedTag = dataEntity.CliqueLocationRequests.FirstOrDefault(res => res.Id == id);
@@ -79,6 +101,20 @@ namespace CliqueDataEntity.Repository
 
             selectedTag.Status = (int)status;
             dataEntity.SaveChanges();
+        }
+
+        public void UpdateTweetScore(IEnumerable<SemantriaRequest> semantriaRequest)
+        {
+            foreach (var item in semantriaRequest)
+            {
+                var existingTweet = dataEntity.CliqueTweets.FirstOrDefault(res => res.TweetIdStr == item.Guid);
+                if (existingTweet == null)
+                    continue;
+                existingTweet.Score = item.Score;
+                dataEntity.SaveChanges();
+            }
+            
+           
         }
     }
 }

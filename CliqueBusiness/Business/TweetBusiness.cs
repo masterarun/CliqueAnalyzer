@@ -16,14 +16,7 @@ namespace CliqueService.Business
         //private const string TwitterConsumerKey = "unZjcnD6BB0vbU5TfTiXPGnVe";
         //private const string TwitterConsumerSecret = "7VoiPTrbqaq1vnuu87U4CAbYDyfiqJwlSanN6LvzGkfQ43f1fj";
 
-        public class TweetRequest
-        {
-            public string Text { get; set; }
-            public string Latitude { get; set; }
-            public string Longitude { get; set; }
-            public string MaxId { get; set; }
-        }
-
+      
         private static string GetAccessToken()
         {
             var httpClient = new HttpClient();

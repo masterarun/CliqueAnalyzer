@@ -116,5 +116,23 @@ namespace CliqueDataEntity.Mapper
             request.Longitude = model.Longitude;           
             return request;
         }
+
+        public CliqueEvent MapEventModelToEntity(CliqueEventModel model)
+        {
+            var request = new CliqueEvent();
+
+            request.CreatedAt = DateTime.Now;
+            request.Id = model.Id;
+            request.Description = model.Description;
+            request.EndDate = model.EndDate;
+            request.EventId = model.EventId;
+            request.Score = model.Score;
+            request.Name = model.Name;
+            request.StartDate = model.StartDate;
+            request.Venue = model.Venue;
+            request.ModifiedAt = DateTime.Now;
+
+            return request;
+        }
     }
 }

@@ -25,14 +25,14 @@ namespace CliqueWebClient.Controllers
         }
 
         [HttpGet]
-        public CliqueTagRequestModel GetHashTagDetails(string tag, string location, DateTime fromDate, DateTime toDate)
+        public CliqueTagRequestModel GetHashTagDetails(string tag, string location)//, DateTime fromDate, DateTime toDate)
         {
             var model = new CliqueTagRequestModel
             {
                 Tag = tag,
                 Location = location,
-                FromDate = fromDate,
-                ToDate = toDate
+                //FromDate = fromDate,
+                //ToDate = toDate
             };
 
             HashTagService service = new HashTagService();

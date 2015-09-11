@@ -34,166 +34,167 @@
                 <input type="text" id="pinclode" class="form-control" placeholder="Pincode" aria-describedby="sizing-addon2" data-bind="value: CityName" onkeyup=" javascript: TriggerSubmit(); ">
             </div>
             <div class="col-md-2">
-                <button id="getDetailsBtn" type="submit" class="btn btn-primary" style="background-color: Orange; color: White; font-weight: bold; font-family: Calibri" 
-                        onclick=" javscript:GetGeoLcation() ">Get Location Details</button>
+                <button id="getDetailsBtn" type="submit" class="btn btn-primary" style="background-color: Orange; color: White; font-weight: bold; font-family: Calibri"
+                        onclick=" javscript:GetGeoLcation() ">
+                    Get Location Details
+                </button>
             </div>
         </div>
     </div>
 </div>
 <div id="Details" class="row hide">
-    
-        <div class="col-md-4" style="padding-right:0px;">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="background-color: Orange">
-                    <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#MapDetails"
-                           aria-expanded="true" aria-controls="collapseOne" style="color: White; font-weight: bold;
+    <div class="col-md-4" style="padding-right:0px;">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color: Orange">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#MapDetails"
+                       aria-expanded="true" aria-controls="collapseOne" style="color: White; font-weight: bold;
                            font-weight: bold; font-family: Calibri;">Map View</a>
-                    </h4>
-                </div>
-                <div id="MapDetails" class="panel-body" style="padding:0px;">
-                    <div class="panel-body" style="padding:5px;">
-                        <div id="map"></div>
-                    </div>
+                </h4>
+            </div>
+            <div id="MapDetails" class="panel-body" style="padding:0px;">
+                <div class="panel-body" style="padding:5px;">
+                    <div id="locationmap"></div>
                 </div>
             </div>
         </div>
-        <div class="col-md-8" style="padding-left:0px;">
-            <div class="col-md-3">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-comments fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">26</div>
-                            </div>
+    </div>
+    <div class="col-md-8" style="padding-left:0px;">
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">26</div>
                         </div>
                     </div>
-
-                    <div class="panel-footer">
-                        <span class="pull-left">Twitter Score</span>
-                        <div class="clearfix"></div>
-                    </div>
-
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-green">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-tasks fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">12</div>
 
-                            </div>
+                <div class="panel-footer">
+                    <span class="pull-left">Twitter Score</span>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-tasks fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">12</div>
+
                         </div>
                     </div>
-
-                    <div class="panel-footer">
-                        <span class="pull-left">Crime Score</span>
-                        <div class="clearfix"></div>
-                    </div>
-
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-yellow">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-shopping-cart fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">124</div>
 
-                            </div>
+                <div class="panel-footer">
+                    <span class="pull-left">Crime Score</span>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-shopping-cart fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">124</div>
+
                         </div>
                     </div>
-
-                    <div class="panel-footer">
-                        <span class="pull-left">Unemployement Score</span>
-
-                        <div class="clearfix"></div>
-                    </div>
-
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-red">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-support fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">13</div>
 
-                            </div>
+                <div class="panel-footer">
+                    <span class="pull-left">Unemployement Score</span>
+
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-support fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">13</div>
+
                         </div>
                     </div>
-
-                    <div class="panel-footer">
-                        <span class="pull-left">Overall Score</span>
-
-                        <div class="clearfix"></div>
-                    </div>
-
                 </div>
+
+                <div class="panel-footer">
+                    <span class="pull-left">Overall Score</span>
+
+                    <div class="clearfix"></div>
+                </div>
+
             </div>
+        </div>
 
 
-            <div class="col-md-12">
-                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="TweetHeading" style="background-color: Orange">
-                            <h4 class="panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                                   href="#TweetDetails" aria-expanded="false" aria-controls="collapseTwo" style="color: White;
+        <div class="col-md-12">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="TweetHeading" style="background-color: Orange">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                               href="#TweetDetails" aria-expanded="false" aria-controls="collapseTwo" style="color: White;
                                 font-weight: bold; font-family: calibri;">Tweet Score Details</a>
-                            </h4>
-                        </div>
-                        <div id="TweetDetails" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="TweetHeading">
-                            <div class="panel-body" style="height:370px;">
-                                <h4>Tweet Details</h4>
-                            </div>
+                        </h4>
+                    </div>
+                    <div id="TweetDetails" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="TweetHeading">
+                        <div class="panel-body" style="height:370px;">
+                            <h4>Tweet Details</h4>
                         </div>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="CrimeHeading" style="background-color: Orange">
-                            <h4 class="panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                                   href="#CrimeDetails" aria-expanded="false" aria-controls="collapseTwo" style="color: White;
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="CrimeHeading" style="background-color: Orange">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                               href="#CrimeDetails" aria-expanded="false" aria-controls="collapseTwo" style="color: White;
                                font-weight: bold; font-family: Calibri;">Crime Score Details</a>
-                            </h4>
-                        </div>
-                        <div id="CrimeDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="CrimeHeading">
-                            <div class="panel-body" style="height:370px;">
-                                <h4>Crime Details</h4>
-                            </div>
+                        </h4>
+                    </div>
+                    <div id="CrimeDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="CrimeHeading">
+                        <div class="panel-body" style="height:370px;">
+                            <h4>Crime Details</h4>
                         </div>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="UnemployementHeading" style="background-color: Orange">
-                            <h4 class="panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                                   href="#UnemployementDetails" aria-expanded="false" aria-controls="collapseTwo" style="color: White;
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="UnemployementHeading" style="background-color: Orange">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                               href="#UnemployementDetails" aria-expanded="false" aria-controls="collapseTwo" style="color: White;
                            font-weight: bold; font-family: Calibri;">Unemployement Score Details</a>
-                            </h4>
-                        </div>
-                        <div id="UnemployementDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="UnemployementHeading">
-                            <div class="panel-body" style="height:370px;">
-                                <h4>Unemployement Details</h4>
-                            </div>
+                        </h4>
+                    </div>
+                    <div id="UnemployementDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="UnemployementHeading">
+                        <div class="panel-body" style="height:370px;">
+                            <h4>Unemployement Details</h4>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    
+    </div>
+
 </div>
 
 
@@ -235,11 +236,11 @@
 
     function initialize(_lat, _long) {
         // Create the map.
-        var map = new google.maps.Map(document.getElementById('map'), {
+        var map = new google.maps.Map(document.getElementById('locationmap'), {
             zoom: 18,
             center: { lat: _lat, lng: _long },
             mapTypeId: google.maps.MapTypeId.HYBRID,
-            heading: 90,
+            heading: 30,
             tilt: 30,
             //tilt: 45
             //labels:true,

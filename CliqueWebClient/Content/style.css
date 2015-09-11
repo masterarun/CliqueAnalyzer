@@ -35,6 +35,7 @@ p.clr, .clr {
 .header {
 	margin:0;
 	padding:0;
+    padding-left:15px;
 }
 .logo {
 	width:450px;

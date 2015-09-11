@@ -29,7 +29,7 @@ p.clr, .clr {
 .header_resize {
 	margin:0 auto;
 	padding:0;
-	width:930px;
+	/*width:930px;*/
 	height:80px;
 }
 .header {
@@ -158,7 +158,7 @@ h1 small {
 .body_resize {
 	margin:0 auto;
 	padding:20px 0 0 0;
-	width:930px;
+	/*width:930px;*/
 }
 .body {
 	margin:0;

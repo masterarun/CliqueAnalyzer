@@ -36,14 +36,15 @@ p.clr, .clr {
 	margin:0;
 	padding:0;
     padding-left:15px;
-    padding-top:5px;
+    /*padding-top:5px;*/
 }
 .logo {	
 	margin:0 auto;	
 	float:left;
     background-image:url(images/cliquelogo.png);
     background-repeat:no-repeat;
-    background-size:75px 50px;	
+    background-size:70px 63px;	
+    height:60px;
 }
 h1 {
 	margin:0;

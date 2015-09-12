@@ -131,6 +131,7 @@
                                     </tr>
                                 </thead>
                                 <tbody style="font-weight: bold; font-family: Calibri">
+                                    <!-- ko foreach: locationRequestList() -->
                                     <tr>
                                         <td data-bind="text: Id"></td>
                                         <td data-bind="text: Address"></td>
@@ -140,6 +141,7 @@
                                         <td data-bind="text: PostalCode"></td>
                                         <td data-bind="text: StatusName"></td>
                                     </tr>
+                                    <!-- /ko -->
                                 </tbody>
                             </table>
                         </div>
@@ -193,7 +195,7 @@
                                         <div class="col-md-4">
                                             <label for="InputName">Postal Code</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Postal Code" data-bind="value: locationRequestModel().postalcode">
+                                                <input type="text" class="form-control" placeholder="Postal Code" data-bind="value: locationRequestModel().postalCode">
                                             </div>
                                         </div>
 

@@ -75,9 +75,10 @@ namespace CliqueService
 
             var tweetList = tweetBusiness.GetTweetsFromAPI(tweetRequest);
             repository.AddTweetLocationRequest(tweetList, requestId);
-
-            while (tweetList.Count() == 100)
+            int tweetCount = 1;
+            while (tweetList.Count() == 100 && tweetCount <= 25)
             {
+                tweetCount++;
                 tweetRequest.MaxId = tweetList.Last().TweetIdStr;
 
                 tweetList = tweetBusiness.GetTweetsFromAPI(tweetRequest);
@@ -86,9 +87,13 @@ namespace CliqueService
 
             //Get Score
             var semantriaRequest = tweetList.Select(res => new SemantriaRequest { Guid = res.TweetIdStr, Text = res.Text }).ToList();
-
+            int semantriaCount = 1;
             foreach (var request in SplitList(semantriaRequest, 100))
             {
+                if (semantriaCount == 5)
+                    break;
+
+                semantriaCount++;
                 semantriaBusiness.GetScore(request);
                 repository.UpdateTweetScore(semantriaRequest);
             }

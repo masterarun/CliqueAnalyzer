@@ -28,6 +28,9 @@ namespace CliqueWebClient
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/style.css",
+                      "~/Content/sb-admin.css",
+                      "~/Content/font-awesome/css/font-awesome.min.css",
                       "~/Content/site.css"));
         }
     }

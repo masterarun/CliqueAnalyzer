@@ -30,20 +30,20 @@ p.clr, .clr {
 	margin:0 auto;
 	padding:0;
 	/*width:930px;*/
-	height:80px;
+	height:60px;
 }
 .header {
 	margin:0;
 	padding:0;
     padding-left:15px;
+    padding-top:5px;
 }
-.logo {
-	width:450px;
-	height:100px;
-	margin:0 auto;
-	padding:0;
+.logo {	
+	margin:0 auto;	
 	float:left;
-	background:url(images/cliquelogo.png) no-repeat left 12px;
+    background-image:url(images/cliquelogo.png);
+    background-repeat:no-repeat;
+    background-size:75px 50px;	
 }
 h1 {
 	margin:0;
@@ -66,7 +66,7 @@ h1 small {
 	letter-spacing:normal;
 }
 .menu {
-	padding:25px 0 0 0;
+	padding:1px 0 0 0;
 	margin:0;
 	width:410px;
 	float:right;
@@ -158,7 +158,7 @@ h1 small {
 }
 .body_resize {
 	margin:0 auto;
-	padding:20px 0 0 0;
+	padding:0 0 0 0;
 	/*width:930px;*/
 }
 .body {
@@ -177,6 +177,16 @@ h1 small {
 	padding:3px 0 3px 35px;
 	margin:5px 0 10px 0;
 	background:url(images/h2_bg.gif) left no-repeat;
+}
+
+.downIcon
+{
+    font:normal 18px Arial, Helvetica, sans-serif;
+	color:#fff;
+	padding:3px 0 3px 35px;
+	margin:5px 0 10px 0;
+	background:url(images/h2_bg.gif) left no-repeat;
+
 }
 .body h2 span, .body h3 span {
 	color:#ffa800;

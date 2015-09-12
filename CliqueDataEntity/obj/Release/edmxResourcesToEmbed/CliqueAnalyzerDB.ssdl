@@ -1,5 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ipl_userprofilerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CliqueEvent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="Score" Type="float" />
+    <Property Name="CreatedAt" Type="date" Nullable="false" />
+    <Property Name="ModifiedAt" Type="date" Nullable="false" />
+    <Property Name="Venue" Type="nvarchar(max)" />
+    <Property Name="EndDate" Type="date" />
+  </EntityType>
+  <EntityType Name="CliqueLocationEvent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequestId" Type="int" Nullable="false" />
+    <Property Name="EventId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CliqueLocationRequest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Street" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="Latitude" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Longitude" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CliqueLocationTweet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequestId" Type="int" Nullable="false" />
+    <Property Name="TweetId" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="CliqueTagRequest">
     <Key>
       <PropertyRef Name="Id" />
@@ -10,9 +54,9 @@
     <Property Name="ToDate" Type="datetime" Nullable="false" />
     <Property Name="AddedAt" Type="datetime" />
     <Property Name="Status" Type="int" Nullable="false" />
-    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Latitude" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Longitude" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Location" Type="nvarchar(max)" />
+    <Property Name="Latitude" Type="nvarchar(max)" />
+    <Property Name="Longitude" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="CliqueTagTweetMapping">
     <Key>
@@ -39,6 +83,54 @@
     <Property Name="Longitude" Type="nvarchar(max)" />
     <Property Name="Location" Type="nvarchar(max)" />
   </EntityType>
+  <Association Name="FK_CliqueLocationEvent_ToCliqueClaimRequest">
+    <End Role="CliqueLocationRequest" Type="Self.CliqueLocationRequest" Multiplicity="1" />
+    <End Role="CliqueLocationEvent" Type="Self.CliqueLocationEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CliqueLocationRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CliqueLocationEvent">
+        <PropertyRef Name="RequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CliqueLocationEvent_ToCliqueEvent">
+    <End Role="CliqueEvent" Type="Self.CliqueEvent" Multiplicity="1" />
+    <End Role="CliqueLocationEvent" Type="Self.CliqueLocationEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CliqueEvent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CliqueLocationEvent">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CliqueLocationTweet_ToCliqueClaimRequest">
+    <End Role="CliqueLocationRequest" Type="Self.CliqueLocationRequest" Multiplicity="1" />
+    <End Role="CliqueLocationTweet" Type="Self.CliqueLocationTweet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CliqueLocationRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CliqueLocationTweet">
+        <PropertyRef Name="RequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CliqueLocationTweet_ToCliqueTwitter">
+    <End Role="CliqueTweets" Type="Self.CliqueTweets" Multiplicity="1" />
+    <End Role="CliqueLocationTweet" Type="Self.CliqueLocationTweet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CliqueTweets">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CliqueLocationTweet">
+        <PropertyRef Name="TweetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_CliqueTagTweetMapping_ToCliqueTag">
     <End Role="CliqueTagRequest" Type="Self.CliqueTagRequest" Multiplicity="1" />
     <End Role="CliqueTagTweetMapping" Type="Self.CliqueTagTweetMapping" Multiplicity="*" />
@@ -64,9 +156,29 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="ipl_userprofilerModelStoreContainer">
+    <EntitySet Name="CliqueEvent" EntityType="Self.CliqueEvent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CliqueLocationEvent" EntityType="Self.CliqueLocationEvent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CliqueLocationRequest" EntityType="Self.CliqueLocationRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CliqueLocationTweet" EntityType="Self.CliqueLocationTweet" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CliqueTagRequest" EntityType="Self.CliqueTagRequest" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CliqueTagTweetMapping" EntityType="Self.CliqueTagTweetMapping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CliqueTweets" EntityType="Self.CliqueTweets" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CliqueLocationEvent_ToCliqueClaimRequest" Association="Self.FK_CliqueLocationEvent_ToCliqueClaimRequest">
+      <End Role="CliqueLocationRequest" EntitySet="CliqueLocationRequest" />
+      <End Role="CliqueLocationEvent" EntitySet="CliqueLocationEvent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CliqueLocationEvent_ToCliqueEvent" Association="Self.FK_CliqueLocationEvent_ToCliqueEvent">
+      <End Role="CliqueEvent" EntitySet="CliqueEvent" />
+      <End Role="CliqueLocationEvent" EntitySet="CliqueLocationEvent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CliqueLocationTweet_ToCliqueClaimRequest" Association="Self.FK_CliqueLocationTweet_ToCliqueClaimRequest">
+      <End Role="CliqueLocationRequest" EntitySet="CliqueLocationRequest" />
+      <End Role="CliqueLocationTweet" EntitySet="CliqueLocationTweet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CliqueLocationTweet_ToCliqueTwitter" Association="Self.FK_CliqueLocationTweet_ToCliqueTwitter">
+      <End Role="CliqueTweets" EntitySet="CliqueTweets" />
+      <End Role="CliqueLocationTweet" EntitySet="CliqueLocationTweet" />
+    </AssociationSet>
     <AssociationSet Name="FK_CliqueTagTweetMapping_ToCliqueTag" Association="Self.FK_CliqueTagTweetMapping_ToCliqueTag">
       <End Role="CliqueTagRequest" EntitySet="CliqueTagRequest" />
       <End Role="CliqueTagTweetMapping" EntitySet="CliqueTagTweetMapping" />

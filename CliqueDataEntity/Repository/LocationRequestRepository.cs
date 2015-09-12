@@ -64,9 +64,12 @@ namespace CliqueDataEntity.Repository
                 else
                     item.Id = existingTweet.Id;
 
-
-                dataEntity.CliqueLocationTweets.Add(new CliqueLocationTweet { RequestId = id, TweetId = item.Id });
-                dataEntity.SaveChanges();
+                var existingMappingItem = dataEntity.CliqueLocationTweets.FirstOrDefault(res => res.RequestId == id && res.TweetId == item.Id);
+                if (existingMappingItem == null)
+                {
+                    dataEntity.CliqueLocationTweets.Add(new CliqueLocationTweet { RequestId = id, TweetId = item.Id });
+                    dataEntity.SaveChanges();
+                }
             }
 
         }
@@ -86,9 +89,12 @@ namespace CliqueDataEntity.Repository
                 else
                     item.Id = existingTweet.Id;
 
-
-                dataEntity.CliqueLocationEvents.Add(new CliqueLocationEvent { RequestId = id, EventId = item.Id });
-                dataEntity.SaveChanges();
+                var existingMappingItem = dataEntity.CliqueLocationEvents.FirstOrDefault(res => res.RequestId == id && res.EventId == item.Id);
+                if (existingMappingItem == null)
+                {
+                    dataEntity.CliqueLocationEvents.Add(new CliqueLocationEvent { RequestId = id, EventId = item.Id });
+                    dataEntity.SaveChanges();
+                }                
             }
 
         }

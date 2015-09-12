@@ -28,9 +28,9 @@
         <div class="header">
             <div class="header_resize">
                 <div class="logo">
-                    <h1 style="margin-top: 7px;">
-                        <a href="#"><span>Clique</span><small>shared economy</small></a>
-                    </h1>
+                    <h2 style="margin-top:10px; margin-left:65px;color:#ffa800;">
+                       <span>Clique</span>
+                    </h2>
                 </div>
                 <div class="menu">
                     <ul id="menunav">
@@ -39,8 +39,7 @@
                         <li><a href="@Url.Action("Index", "Home")"><span>Dashboard</span></a></li>
                     </ul>
                 </div>
-                <div class="clr">
-                </div>
+              
             </div>
         </div>
         <div class="body">
@@ -83,7 +82,7 @@
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
         var baseUrl = '@Url.Content("~/")';
-        //var baseUrl = 'http://cliqueanalyzer.azurewebsites.net/';
+       // var baseUrl = 'http://cliqueanalyzer.azurewebsites.net/';
         $(document).ready(function () {
             $('#menunav li a').click(function (e) {
                 debugger;

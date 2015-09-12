@@ -51,9 +51,10 @@ namespace CliqueService
             };
             var tweetList = business.GetTweetsFromAPI(tweetRequest);
             repository.AddTweetToHashTag(tweetList, requestId);
-
-            while (tweetList.Count() == 100)
+            int count = 1;
+            while (tweetList.Count() == 100 && count <=25)
             {
+                count++;
                 tweetRequest.MaxId = tweetList.Last().TweetIdStr;
                 tweetList = business.GetTweetsFromAPI(tweetRequest);
                 repository.AddTweetToHashTag(tweetList, requestId);

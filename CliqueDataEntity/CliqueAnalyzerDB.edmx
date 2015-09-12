@@ -59,9 +59,9 @@
           <Property Name="ToDate" Type="datetime" Nullable="false" />
           <Property Name="AddedAt" Type="datetime" />
           <Property Name="Status" Type="int" Nullable="false" />
-          <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Latitude" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Longitude" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Location" Type="nvarchar(max)" />
+          <Property Name="Latitude" Type="nvarchar(max)" />
+          <Property Name="Longitude" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="CliqueTagTweetMapping">
           <Key>
@@ -207,9 +207,9 @@
           <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="AddedAt" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Int32" Nullable="false" />
-          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CliqueTagTweetMappings" Relationship="Self.FK_CliqueTagTweetMapping_ToCliqueTag" FromRole="CliqueTagRequest" ToRole="CliqueTagTweetMapping" />
         </EntityType>
         <EntityType Name="CliqueTagTweetMapping">

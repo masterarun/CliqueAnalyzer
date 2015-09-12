@@ -12,7 +12,7 @@ namespace CliqueJobTester
         static void Main(string[] args)
         {
             var service = new HashTagService();
-            var result = service.GenerateHashTagDetails(3);
+            var result = service.GenerateHashTagDetails(28);
         }
     }
 }

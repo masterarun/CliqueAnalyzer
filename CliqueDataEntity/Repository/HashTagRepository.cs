@@ -35,7 +35,7 @@ namespace CliqueDataEntity.Repository
         public CliqueTagRequestModel GetHashTagRequestWithDetails(CliqueTagRequestModel model)
         {
             CliqueTagRequestModel response;
-            var selectedTag = dataEntity.CliqueTagRequests.FirstOrDefault(res => res.Tag == model.Tag && res.Location == model.Location);
+            var selectedTag = dataEntity.CliqueTagRequests.FirstOrDefault(res => (res.Tag == model.Tag) && (res.Location == (model.Location == null ? "" : model.Location)));
                 //&& res.FromDate == model.FromDate && res.ToDate == model.ToDate);
             if (selectedTag == null)
                 return null;
@@ -62,9 +62,13 @@ namespace CliqueDataEntity.Repository
                 else
                     item.Id = existingTweet.Id;
 
-                
-                dataEntity.CliqueTagTweetMappings.Add(new CliqueTagTweetMapping {TagId = id, TweetId = item.Id });
-                dataEntity.SaveChanges();
+
+                var existingMappingItem = dataEntity.CliqueTagTweetMappings.FirstOrDefault(res => res.TagId == id && res.TweetId == item.Id);
+                if (existingMappingItem == null)
+                {
+                    dataEntity.CliqueTagTweetMappings.Add(new CliqueTagTweetMapping { TagId = id, TweetId = item.Id });
+                    dataEntity.SaveChanges();
+                }
             }
 
         }

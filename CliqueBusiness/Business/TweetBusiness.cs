@@ -51,7 +51,7 @@ namespace CliqueService.Business
                 url = url + string.Format("max_id={0}&", request.MaxId);
             }
 
-            url = url.TrimEnd('&');
+            url = url + "count=100&lang=en";
 
             var requestUserTimeline = new HttpRequestMessage(System.Net.Http.HttpMethod.Get, url);
             var accessToken = GetAccessToken();
@@ -65,7 +65,7 @@ namespace CliqueService.Business
 
             List<CliqueTweetModel> modelList = new List<CliqueTweetModel>();
             foreach (var item in enumerableTweets)
-            {
+            {   
                 var geoItem = (item.geo ?? item.retweeted_status.geo);
                 modelList.Add(new CliqueTweetModel
                 {

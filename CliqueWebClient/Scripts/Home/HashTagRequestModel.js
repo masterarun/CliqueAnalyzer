@@ -2,12 +2,12 @@
 
     var self = this;
 
-    self.tag = ko.observable();
+    self.tag = ko.observable("");
     self.fromDate = ko.observable();
     self.toDate = ko.observable();
     self.id = ko.observable();
     
-    self.location = ko.observable();
+    self.location = ko.observable("");
 
     self.latitude = ko.observable();
     self.longitude = ko.observable();

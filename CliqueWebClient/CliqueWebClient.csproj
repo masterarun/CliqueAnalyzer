@@ -274,6 +274,7 @@
     <Content Include="Views\Home\HashTag.cshtml" />
     <Content Include="Views\Shared\_CliqueAnalyzerLayout.cshtml" />
     <Content Include="Views\Home\Location.cshtml" />
+    <Content Include="Views\Home\Event.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

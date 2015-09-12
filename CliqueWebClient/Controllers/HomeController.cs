@@ -32,6 +32,10 @@ namespace CliqueWebClient.Controllers
             return View();
         }
 
+        public ActionResult Event()
+        {
+            return View();
+        }
 
         public ActionResult Location()
         {

@@ -238,6 +238,7 @@
     <Content Include="Scripts\HashTag\HashTagViewModel.js" />
     <Content Include="Scripts\Home\DashboardViewModel.js" />
     <Content Include="Scripts\Home\HashTagRequestModel.js" />
+    <Content Include="Scripts\Home\LocationRequestModel.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

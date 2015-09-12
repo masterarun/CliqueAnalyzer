@@ -12,6 +12,7 @@ namespace CliqueWebClient
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("proxy/{*pathInfo}");  
 
             routes.MapRoute(
                 name: "Default",

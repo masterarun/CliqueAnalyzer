@@ -230,6 +230,7 @@
     <Content Include="Content\font-awesome\scss\_spinning.scss" />
     <Content Include="Content\font-awesome\scss\_stacked.scss" />
     <Content Include="Content\font-awesome\scss\_variables.scss" />
+    <Content Include="applicationHost.xdt" />
     <None Include="Properties\PublishProfiles\CliqueAnalyzer.pubxml" />
     <Content Include="Properties\webjobs-list.json" />
     <None Include="Properties\PublishProfiles\CliqueIPL %282%29.pubxml" />

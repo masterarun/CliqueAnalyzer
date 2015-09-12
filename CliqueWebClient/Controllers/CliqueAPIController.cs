@@ -63,13 +63,14 @@ namespace CliqueWebClient.Controllers
         }
 
         [HttpGet]
-        public CliqueLocationRequestModel GetLocationRequestDetails(string address, DateTime fromDate, DateTime toDate)
+        public CliqueLocationRequestModel GetLocationRequestDetails(string pinCode)//,string address, DateTime fromDate, DateTime toDate)
         {
             var model = new CliqueLocationRequestModel
             {
-                Address = address,               
-                FromDate = fromDate,
-                ToDate = toDate
+                //Address = address,               
+                //FromDate = fromDate,
+                //ToDate = toDate,
+                Pincode=pinCode,
             };
 
             LocationRequestService service = new LocationRequestService();

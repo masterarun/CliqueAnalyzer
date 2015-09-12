@@ -27,11 +27,11 @@
                 <input type="text" id="state" class="form-control" placeholder="State" aria-describedby="sizing-addon2" data-bind="value: State">
             </div>
             <div class="col-md-2">
-                <input type="text" id="pinclode" class="form-control" placeholder="Pincode" aria-describedby="sizing-addon2" data-bind="value: CityName" onkeyup=" javascript: TriggerSubmit(); ">
+                <input type="text" id="pinCode" class="form-control" placeholder="Pincode" aria-describedby="sizing-addon2" data-bind="value: CityName" onkeyup=" javascript: TriggerSubmit(); ">
             </div>
             <div class="col-md-2">
                 <button id="getDetailsBtn" type="submit" class="btn btn-primary" style="background-color: Orange; color: White; font-weight: bold; font-family: Calibri"
-                        onclick=" javscript:GetGeoLcation() ">
+                        onclick=" javscript: getLocationTweet() ">
                     Get Location Details
                 </button>
             </div>
@@ -155,7 +155,7 @@
                     </div>
                     <div id="TweetDetails" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="TweetHeading">
                         <div class="panel-body" style="height:370px;">
-                            <h4>Tweet Details</h4>
+                            <!--Tweet Details here-->
                         </div>
                     </div>
                 </div>
@@ -169,7 +169,7 @@
                     </div>
                     <div id="CrimeDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="CrimeHeading">
                         <div class="panel-body" style="height:370px;">
-                            <h4>Crime Details</h4>
+                            <!--Crime Details here-->
                         </div>
                     </div>
                 </div>
@@ -183,7 +183,7 @@
                     </div>
                     <div id="UnemployementDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="UnemployementHeading">
                         <div class="panel-body" style="height:370px;">
-                            <h4>Unemployement Details</h4>
+                            <!--Unemployement Details here-->
                         </div>
                     </div>
                 </div>
@@ -205,7 +205,7 @@
         debugger;
         //$("#loadingImage").addClass("show");
         var geocoder = new google.maps.Geocoder();
-        var address = $("#pinclode").val();
+        var address = $("#pinCode").val();
         var lat = "";
         var long = "";
         //var styles = [{

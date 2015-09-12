@@ -2,91 +2,214 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <table id="tagTable" class="table table-striped table-bordered">
-            <thead style="background-color: orange;color: White; font-weight: bold; font-family: Calibri">
-                <tr>
-                    <th>Id</th>
-                    <th>HashTag</th>
-                    <th>From Date</th>
-                    <th>To Date</th>
-                    <th>City</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody style="font-weight: bold; font-family: Calibri">
-                <!-- ko foreach: hashTagRequestList() -->
-                <tr>
-                    <td data-bind="text: Id"></td>
-                    <td data-bind="text: Tag"></td>
-                    <td data-bind="text: FromDate"></td>
-                    <td data-bind="text: ToDate"></td>
-                    <td data-bind="text: Location"></td>
-                    <td data-bind="text: StatusName"></td>
-                </tr>
-                <!-- /ko -->
-            </tbody>
-        </table>
-
-    </div>
-    <div class="col-md-2 col-md-offset-10">
-        <button type="button" class="btn btn-default" style="background-color: Orange;color: White; font-weight: bold; font-family: Calibri" data-dismiss="modal" data-bind="click: showTagRequestModal">
-            Add New HashTag
-        </button>
-    </div>
-
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-bind="showModal: displayAddHashTagModal" style="vertical-align: middle">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: orange; color: white; font-weight: bold; font-family: calibri; height: 50px;">
-                <button type="button" class="close" data-dismiss="modal" data-bind="click: hideTagRequestModal" aria-label="Close">
-                    <span aria-hidden="true" style="font-weight: bold; color: white">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Add HashTag Request</h4>
+<div class="col-md-12">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="HashTagHeading" style="background-color: Orange">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#HashDashboard"
+                       aria-expanded="true" aria-controls="collapseOne" style="color: White; font-weight: bold;
+                           font-weight: bold; font-family: Calibri;">Hash Tag Dashboard</a>
+                </h4>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="InputName">Hash Tag</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="HashTag" data-bind="value: hashTagRequestModel().tag">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="InputName">City</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="City" data-bind="value: hashTagRequestModel().location">
-                        </div>
-                    </div>
+            <div id="HashDashboard" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="HashTagHeading">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="tagTable" class="table table-striped table-bordered">
+                                <thead style="background-color: orange;color: White; font-weight: bold; font-family: Calibri">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>HashTag</th>
+                                        <th>From Date</th>
+                                        <th>To Date</th>
+                                        <th>City</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-weight: bold; font-family: Calibri">
+                                    <!-- ko foreach: hashTagRequestList() -->
+                                    <tr>
+                                        <td data-bind="text: Id"></td>
+                                        <td data-bind="text: Tag"></td>
+                                        <td data-bind="text: FromDate"></td>
+                                        <td data-bind="text: ToDate"></td>
+                                        <td data-bind="text: Location"></td>
+                                        <td data-bind="text: StatusName"></td>
+                                    </tr>
+                                    <!-- /ko -->
+                                </tbody>
+                            </table>
 
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="InputName">From Date</label>
-                        <div class="input-group">
-                            <input type="date" class="form-control" data-bind="value: hashTagRequestModel().fromDate">
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="InputName">To Date</label>
-                        <div class="input-group">
-                            <input type="date" class="form-control" data-bind="value: hashTagRequestModel().toDate">
+                        <div class="col-md-2 col-md-offset-10">
+                            <button type="button" class="btn btn-default" style="background-color: Orange;color: White; font-weight: bold; font-family: Calibri" data-dismiss="modal" data-bind="click: showTagRequestModal">
+                                Add New HashTag
+                            </button>
                         </div>
-                    </div>
 
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-bind="showModal: displayAddHashTagModal" style="vertical-align: middle">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: orange; color: white; font-weight: bold; font-family: calibri; height: 50px;">
+                                    <button type="button" class="close" data-dismiss="modal" data-bind="click: hideTagRequestModal" aria-label="Close">
+                                        <span aria-hidden="true" style="font-weight: bold; color: white">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">Add HashTag Request</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="InputName">Hash Tag</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="HashTag" data-bind="value: hashTagRequestModel().tag">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="InputName">City</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="City" data-bind="value: hashTagRequestModel().location">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="InputName">From Date</label>
+                                            <div class="input-group">
+                                                <input type="date" class="form-control" data-bind="value: hashTagRequestModel().fromDate">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="InputName">To Date</label>
+                                            <div class="input-group">
+                                                <input type="date" class="form-control" data-bind="value: hashTagRequestModel().toDate">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="click: hideTagRequestModal">Close</button>
+                                    <button type="button" class="btn btn-primary" style="background-color: Orange; color: White; font-weight: bold; font-family: Calibri"
+                                            data-dismiss="modal" data-bind="click: addHashTagRequest">
+                                        Save Request
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="click: hideTagRequestModal">Close</button>
-                <button type="button" class="btn btn-primary" style="background-color: Orange; color: White; font-weight: bold; font-family: Calibri"
-                        data-dismiss="modal" data-bind="click: addHashTagRequest">
-                    Save Request
-                </button>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="LocationHeading" style="background-color: Orange">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                       href="#LocationDashboard" aria-expanded="false" aria-controls="collapseTwo" style="color: White;
+                           font-weight: bold; font-family: Calibri;">Location Dashboard</a>
+                </h4>
+            </div>
+            <div id="LocationDashboard" class="panel-collapse collapse" role="tabpanel" aria-labelledby="LocationHeading">
+                <div class="panel-body">
+                    <!--Location Dashboard-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="locationTable" class="table table-striped table-bordered">
+                                <thead style="background-color: orange;color: White; font-weight: bold; font-family: Calibri">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Address</th>
+                                        <th>Street</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>Postal Code</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-weight: bold; font-family: Calibri">
+                                    <tr>
+                                        <td data-bind="text: Id"></td>
+                                        <td data-bind="text: Address"></td>
+                                        <td data-bind="text: Street"></td>
+                                        <td data-bind="text: City"></td>
+                                        <td data-bind="text: State"></td>
+                                        <td data-bind="text: PostalCode"></td>
+                                        <td data-bind="text: StatusName"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-2 col-md-offset-10">
+                            <button type="button" class="btn btn-default" style="background-color: Orange;color: White; font-weight: bold; font-family: Calibri" data-dismiss="modal" data-bind="click: showLocationRequestModal">
+                                Add New Location
+                            </button>
+                        </div>
+
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myLocationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-bind="showModal: displayAddLocationModal" style="vertical-align: middle">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: orange; color: white; font-weight: bold; font-family: calibri; height: 50px;">
+                                    <button type="button" class="close" data-dismiss="modal" data-bind="click: hideLocationRequestModal" aria-label="Close">
+                                        <span aria-hidden="true" style="font-weight: bold; color: white">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">Add Location Request</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="InputName">Address</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Location" data-bind="value: locationRequestModel().address">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="InputName">Street</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Street" data-bind="value: locationRequestModel().street">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="InputName">City</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="City" data-bind="value: locationRequestModel().city">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="InputName">State</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="State" data-bind="value: locationRequestModel().state">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="InputName">Postal Code</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Postal Code" data-bind="value: locationRequestModel().postalcode">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="click: hideLocationRequestModal">Close</button>
+                                    <button type="button" class="btn btn-primary" style="background-color: Orange; color: White; font-weight: bold; font-family: Calibri"
+                                            data-dismiss="modal" data-bind="click: addLocationRequest">
+                                        Save Request
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -66,6 +66,9 @@
     <Compile Include="CliqueEvent.cs">
       <DependentUpon>CliqueAnalyzerDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="CliqueExternalScore.cs">
+      <DependentUpon>CliqueAnalyzerDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="CliqueLocationEvent.cs">
       <DependentUpon>CliqueAnalyzerDB.tt</DependentUpon>
     </Compile>

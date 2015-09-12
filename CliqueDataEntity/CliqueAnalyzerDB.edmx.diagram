@@ -18,6 +18,7 @@
         <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueTwitter" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueEvent" Width="1.5" PointX="5.375" PointY="1" />
         <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueEvent" />
+        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueExternalScore" Width="1.5" PointX="5.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

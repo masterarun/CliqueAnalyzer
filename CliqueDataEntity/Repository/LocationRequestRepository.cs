@@ -36,7 +36,7 @@ namespace CliqueDataEntity.Repository
         public CliqueLocationRequestModel GetLocationRequestWithDetails(CliqueLocationRequestModel model)
         {
             CliqueLocationRequestModel response;
-            var selectedItem = dataEntity.CliqueLocationRequests.FirstOrDefault(res => res.Address == model.Address);
+            var selectedItem = dataEntity.CliqueLocationRequests.FirstOrDefault(res => res.Address == model.Pincode);
             //&&   && res.Street == model.Street && res.FromDate == model.FromDate && res.ToDate == model.ToDate);
             if (selectedItem == null)
                 return null;
@@ -44,7 +44,11 @@ namespace CliqueDataEntity.Repository
             response = mapper.MapLocationRequestEntityToModel(selectedItem);
 
             response.CliqueTweetList = selectedItem.CliqueLocationTweets.Select(res => res.CliqueTweet).Select(mapper.MapTweetEntityToModel).ToList();
-            response.CliqueEventList = selectedItem.CliqueLocationEvents.Select(res => res.CliqueEvent).Select(mapper.MapEventEntityToModel).ToList();
+            //response.CliqueEventList = selectedItem.CliqueLocationEvents.Select(res => res.CliqueEvent).Select(mapper.MapEventEntityToModel).ToList();
+            
+            var externalScore = dataEntity.CliqueExternalScores.FirstOrDefault(res => res.Pincode == model.Pincode);
+            response.CrimeScore = externalScore.CrimeScore;
+            response.UnemploymentScore = externalScore.UnemploymentScore;
             return response;
 
         }

@@ -20,6 +20,15 @@
           <Property Name="Venue" Type="nvarchar(max)" />
           <Property Name="EndDate" Type="date" />
         </EntityType>
+        <EntityType Name="CliqueExternalScore">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pincode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CrimeScore" Type="float" Nullable="false" />
+          <Property Name="UnemploymentScore" Type="float" Nullable="false" />
+        </EntityType>
         <EntityType Name="CliqueLocationEvent">
           <Key>
             <PropertyRef Name="Id" />
@@ -40,6 +49,7 @@
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="Latitude" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Longitude" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Pincode" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="CliqueLocationTweet">
           <Key>
@@ -162,6 +172,7 @@
         </Association>
         <EntityContainer Name="ipl_userprofilerModelStoreContainer">
           <EntitySet Name="CliqueEvent" EntityType="Self.CliqueEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CliqueExternalScore" EntityType="Self.CliqueExternalScore" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CliqueLocationEvent" EntityType="Self.CliqueLocationEvent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CliqueLocationRequest" EntityType="Self.CliqueLocationRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CliqueLocationTweet" EntityType="Self.CliqueLocationTweet" Schema="dbo" store:Type="Tables" />
@@ -297,6 +308,7 @@
             <End Role="CliqueEvent" EntitySet="CliqueEvents" />
             <End Role="CliqueLocationEvent" EntitySet="CliqueLocationEvents" />
           </AssociationSet>
+          <EntitySet Name="CliqueExternalScores" EntityType="ipl_userprofilerModel.CliqueExternalScore" />
         </EntityContainer>
         <EntityType Name="CliqueLocationEvent">
           <Key>
@@ -322,6 +334,7 @@
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="Latitude" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Longitude" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Pincode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CliqueLocationTweet">
           <Key>
@@ -397,6 +410,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CliqueExternalScore">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pincode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CrimeScore" Type="Double" Nullable="false" />
+          <Property Name="UnemploymentScore" Type="Double" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -457,6 +479,7 @@
           <EntitySetMapping Name="CliqueLocationRequests">
             <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueLocationRequest">
               <MappingFragment StoreEntitySet="CliqueLocationRequest">
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
@@ -489,6 +512,16 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CliqueExternalScores">
+            <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueExternalScore">
+              <MappingFragment StoreEntitySet="CliqueExternalScore">
+                <ScalarProperty Name="UnemploymentScore" ColumnName="UnemploymentScore" />
+                <ScalarProperty Name="CrimeScore" ColumnName="CrimeScore" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

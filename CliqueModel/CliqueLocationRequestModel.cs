@@ -19,6 +19,9 @@ namespace CliqueModel
         public string Longitude { get; set; }
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
+        public string Pincode { get; set; }
+        public double CrimeScore { get; set; }
+        public double UnemploymentScore { get; set; }
 
         public virtual ICollection<CliqueEventModel> CliqueEventList { get; set; }
         public virtual ICollection<CliqueTweetModel> CliqueTweetList { get; set; }

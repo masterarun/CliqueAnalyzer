@@ -28,6 +28,7 @@ namespace CliqueDataEntity
         public int Status { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
+        public string Pincode { get; set; }
     
         public virtual ICollection<CliqueLocationEvent> CliqueLocationEvents { get; set; }
         public virtual ICollection<CliqueLocationTweet> CliqueLocationTweets { get; set; }

@@ -97,6 +97,7 @@ namespace CliqueDataEntity.Mapper
             model.State = response.State;
             model.Status = response.Status;
             model.Street = response.Street;
+            model.Pincode = response.Pincode;
             model.StatusName = ((CliqueStatus)response.Status).ToString();
             model.Latitude = response.Latitude;
             model.Longitude = response.Longitude;
@@ -113,7 +114,8 @@ namespace CliqueDataEntity.Mapper
             request.Status = model.Status;
             request.Street = model.Street;
             request.Latitude = model.Latitude;
-            request.Longitude = model.Longitude;           
+            request.Longitude = model.Longitude;
+            request.Pincode = model.Pincode;
             return request;
         }
 

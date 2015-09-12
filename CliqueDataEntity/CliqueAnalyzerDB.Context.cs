@@ -32,5 +32,6 @@ namespace CliqueDataEntity
         public virtual DbSet<CliqueLocationRequest> CliqueLocationRequests { get; set; }
         public virtual DbSet<CliqueLocationTweet> CliqueLocationTweets { get; set; }
         public virtual DbSet<CliqueEvent> CliqueEvents { get; set; }
+        public virtual DbSet<CliqueExternalScore> CliqueExternalScores { get; set; }
     }
 }

@@ -27,11 +27,10 @@ namespace CliqueWebClient
                     "~/Scripts/knockout-{version}.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/style.css",
-                      "~/Content/sb-admin.css",
-                      "~/Content/font-awesome/css/font-awesome.min.css",
-                      "~/Content/site.css"));
+                "~/Content/style.css",
+                "~/Content/bootstrap.css",
+                "~/Content/sb-admin.css",
+                "~/Content/font-awesome/css/font-awesome.min.css"));
         }
     }
 }

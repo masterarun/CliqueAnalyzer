@@ -18,7 +18,7 @@
 
 var DashboardViewModel = function () {
     $("#menunav").find(".active").removeClass("active");
-    $("#menunav").find("a")[2].className = "active";
+    $("#menunav").find("a")[3].className = "active";
     var self = this;
 
     self.hashTagRequestList = ko.observableArray([]);

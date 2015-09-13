@@ -1,7 +1,7 @@
 ﻿var LocationViewModel = function () {
     debugger;
     $("#menunav").find(".active").removeClass("active");
-    $("#menunav").find("a")[1].className = "active";
+    $("#menunav").find("a")[0].className = "active";
     var self = this;
     
     self.tweetList = ko.observableArray([]);

@@ -52,6 +52,7 @@
 
     self.getLocationTweet = function () {
         debugger;
+        $("#loadingImage").addClass("show");
         $.ajax({
             type: "Get",
             contentType: "application/json",
@@ -67,7 +68,7 @@
 
             //self.table = $("#tweetTable").DataTable({ responsive: true });
             $("#Details").removeClass('hide').addClass('show');
-            //$("#loadingImage").removeClass("show").addClass("hide");
+            $("#loadingImage").removeClass("show").addClass("hide");
             //$('#MapDetails').addClass('in');
         }).error(function (ex) {
             debugger;

@@ -24,7 +24,7 @@
                     center: { lat: lat, lng: long },
                     mapTypeId: google.maps.MapTypeId.HYBRID,
                     heading: 30,
-                    tilt: 30,                    
+                    tilt: 30,
                 });
 
             } else {
@@ -32,7 +32,7 @@
             }
         });
         $("#Details").removeClass("hide").addClass("show");
-    }
+    };
 
     self.getLocationTweet = function () {
         debugger;

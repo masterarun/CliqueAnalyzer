@@ -36,7 +36,7 @@ namespace CliqueDataEntity.Repository
         public CliqueLocationRequestModel GetLocationRequestWithDetails(CliqueLocationRequestModel model)
         {
             CliqueLocationRequestModel response;
-            var selectedItem = dataEntity.CliqueLocationRequests.FirstOrDefault(res => res.Address == model.Pincode);
+            var selectedItem = dataEntity.CliqueLocationRequests.FirstOrDefault(res => res.Pincode == model.Pincode);
             //&&   && res.Street == model.Street && res.FromDate == model.FromDate && res.ToDate == model.ToDate);
             if (selectedItem == null)
                 return null;

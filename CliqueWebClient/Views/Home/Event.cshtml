@@ -14,7 +14,8 @@
             var item = $("#myIFrame").contents().find("#fb-root");
         }
         $(document).ready(function () {
-            
+            $("#menunav").find(".active").removeClass("active");
+            $("#menunav").find("a")[2].className = "active";
         });
     </script>
 }

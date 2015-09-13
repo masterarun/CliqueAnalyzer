@@ -8,14 +8,14 @@
     self.state = ko.observable("");
     self.id = ko.observable("");
 
-    self.postalCode = ko.observable("");
+    self.pincode = ko.observable("");
 
     self.latitude = ko.observable("");
     self.longitude = ko.observable("");
 
-      self.postalCode.subscribe(function () {
+    self.pincode.subscribe(function () {
         debugger;
-        if (self.postalCode().trim() == "") {
+        if (self.pincode().trim() == "") {
             self.latitude("");
             self.longitude("");
             return;
@@ -26,7 +26,7 @@
     self.GetGeoLocation = function () {
         debugger;
         var geocoder = new google.maps.Geocoder();
-        var address = self.postalCode().trim();
+        var address = self.pincode().trim();
 
         geocoder.geocode({ 'address': address }, function (results, status) {
             debugger;

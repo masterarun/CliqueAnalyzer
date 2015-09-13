@@ -47,8 +47,11 @@ namespace CliqueDataEntity.Repository
             //response.CliqueEventList = selectedItem.CliqueLocationEvents.Select(res => res.CliqueEvent).Select(mapper.MapEventEntityToModel).ToList();
             
             var externalScore = dataEntity.CliqueExternalScores.FirstOrDefault(res => res.Pincode == model.Pincode);
-            response.CrimeScore = externalScore.CrimeScore;
-            response.UnemploymentScore = externalScore.UnemploymentScore;
+            if (externalScore != null)
+            {
+                response.CrimeScore = externalScore.CrimeScore;
+                response.UnemploymentScore = externalScore.UnemploymentScore;
+            }
             return response;
 
         }

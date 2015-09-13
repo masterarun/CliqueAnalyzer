@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Event";
+}
+
+<iframe id="myIFrame" src="http://insideairbnb.com/los-angeles/" width="1300" height="600"></iframe>
+<button onclick="javascript:getData()" >dsfdsf</button>
+
+@section scripts{
+    <script type="text/javascript">
+        function getData()
+        {
+            debugger;
+
+            var item = $("#myIFrame").contents().find("#fb-root");
+        }
+        $(document).ready(function () {
+            
+        });
+    </script>
+}

@@ -5,6 +5,9 @@
     var self = this;
     
     self.tweetList = ko.observableArray([]);
+    self.CrimeScore = ko.observable("");
+    self.UnemploymentScore = ko.observable("");
+    self.TweetScore = ko.observable("");
 
     self.locationRequestModel = ko.observable(new LocationRequestModel());
 
@@ -63,6 +66,9 @@
                 self.table.destroy();
             }
             self.tweetList(res.CliqueTweetList);
+            self.UnemploymentScore(res.UnemploymentScore);
+            self.CrimeScore(res.CrimeScore);
+            self.TweetScore(res.TweetScore);
             self.initialize(res);
 
             //self.table = $("#tweetTable").DataTable({ responsive: true });

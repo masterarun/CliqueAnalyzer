@@ -45,6 +45,13 @@ namespace CliqueDataEntity.Repository
 
             response.CliqueTweetList = selectedItem.CliqueLocationTweets.Select(res => res.CliqueTweet).Select(mapper.MapTweetEntityToModel).ToList();
             //response.CliqueEventList = selectedItem.CliqueLocationEvents.Select(res => res.CliqueEvent).Select(mapper.MapEventEntityToModel).ToList();
+
+            var totalTweets = response.CliqueTweetList.Count;
+            if (totalTweets > 0)
+            {
+                var totalPositiveTweets = response.CliqueTweetList.Count(x => x.Score > 0.3);
+                response.TweetScore = totalTweets > 0 ? Math.Round(((double)totalPositiveTweets / (double)totalTweets) * 100, 2) : 0;
+            }
             
             var externalScore = dataEntity.CliqueExternalScores.FirstOrDefault(res => res.Pincode == model.Pincode);
             if (externalScore != null)

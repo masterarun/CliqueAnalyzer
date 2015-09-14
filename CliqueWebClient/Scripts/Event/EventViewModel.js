@@ -12,7 +12,7 @@ var EventViewModel = function () {
     self.WaitForIFrame = function () {        
         var item = $("#myIFrame").contents().find(".navbar-fixed-top");
         if (item.length == 0) {
-           setTimeout(self.WaitForIFrame(), 500);
+           setTimeout(self.WaitForIFrame(), 5000);
         } else {
             self.done();
         }

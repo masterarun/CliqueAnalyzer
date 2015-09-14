@@ -48,7 +48,11 @@ var HashTagViewModel = function () {
 
     self.getHashTagTweet = function () {
         debugger;
+        if ($("#Details")[0].className === "row show") {
+            $("#Details").removeClass("show").addClass("hide");
+        }
         $("#loadingImage").addClass("show");
+              
        
 
         $.ajax({

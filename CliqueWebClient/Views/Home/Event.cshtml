@@ -19,7 +19,7 @@
                 <input type="text" id="city" class="form-control" placeholder="City" aria-describedby="sizing-addon2" data-bind="value:city">
             </div>
             <div class="col-md-2">
-                <input type="text" id="pinCode" class="form-control" placeholder="Pincode" aria-describedby="sizing-addon2" data-bind="value:pincode">
+                <input type="text" id="pinCode" class="form-control" placeholder="Pincode" aria-describedby="sizing-addon2" data-bind="value:pincode" onkeyup=" javascript: TriggerSubmit(); ">
             </div>
             <div class="col-md-2">
                 <button id="getDetailsBtn" type="submit" class="btn btn-primary" style="background-color: Orange; color: White; font-weight: bold; font-family: Calibri"
@@ -76,7 +76,11 @@
 @section scripts{
 
     <script language="javascript">
-
+        function TriggerSubmit() {
+            if (event.keyCode === 13) {
+                $("#getDetailsBtn").click();
+            }
+        }
         $(document).ready(function () {
             var viewModel = new EventViewModel();
             ko.applyBindings(viewModel);

@@ -236,6 +236,7 @@
     <None Include="Properties\PublishProfiles\CliqueIPL %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\CliqueIPL.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Event\EventViewModel.js" />
     <Content Include="Scripts\HashTag\HashTagViewModel.js" />
     <Content Include="Scripts\Home\DashboardViewModel.js" />
     <Content Include="Scripts\Home\HashTagRequestModel.js" />

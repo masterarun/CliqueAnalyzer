@@ -111,9 +111,14 @@ namespace CliqueService
             }
 
             return list;
-        } 
+        }
 
 
 
+
+        public CliqueLocationRequestModel GetEventRequestDetails(CliqueLocationRequestModel model)
+        {
+            return repository.GetEventRequestDetails(model);
+        }
     }
 }

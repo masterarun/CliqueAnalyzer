@@ -77,6 +77,21 @@ namespace CliqueWebClient.Controllers
             return service.GetLocationRequestWithDetails(model);
         }
 
+        [HttpGet]
+        public CliqueLocationRequestModel GetEventRequestDetails(string pinCode)//,string address, DateTime fromDate, DateTime toDate)
+        {
+            var model = new CliqueLocationRequestModel
+            {
+                //Address = address,               
+                //FromDate = fromDate,
+                //ToDate = toDate,
+                Pincode = pinCode,
+            };
+
+            LocationRequestService service = new LocationRequestService();
+            return service.GetEventRequestDetails(model);
+        }
+
         [HttpPost]
         public void AddLocationRequest(CliqueLocationRequestModel model)
         {

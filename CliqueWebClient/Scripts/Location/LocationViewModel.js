@@ -75,7 +75,10 @@
             self.TweetScore(res.TweetScore);
             self.initialize(res);
 
-            //self.table = $("#tweetTable").DataTable({ responsive: true });
+            self.table = $("#tweetTable").DataTable({
+                "order": [[4, "desc"]],
+                responsive: true
+            });
             $("#Details").removeClass('hide').addClass('show');
             $("#loadingImage").removeClass("show").addClass("hide");
             //$('#MapDetails').addClass('in');

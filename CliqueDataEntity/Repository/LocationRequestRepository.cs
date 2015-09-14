@@ -137,5 +137,21 @@ namespace CliqueDataEntity.Repository
             
            
         }
+
+        public CliqueLocationRequestModel GetEventRequestDetails(CliqueLocationRequestModel model)
+        {
+            CliqueLocationRequestModel response;
+            var selectedItem = dataEntity.CliqueLocationRequests.FirstOrDefault(res => res.Pincode == model.Pincode);
+            //&&   && res.Street == model.Street && res.FromDate == model.FromDate && res.ToDate == model.ToDate);
+            if (selectedItem == null)
+                return null;
+
+            response = mapper.MapLocationRequestEntityToModel(selectedItem);
+
+           // response.CliqueTweetList = selectedItem.CliqueLocationTweets.Select(res => res.CliqueTweet).Select(mapper.MapTweetEntityToModel).ToList();
+            response.CliqueEventList = selectedItem.CliqueLocationEvents.Select(res => res.CliqueEvent).Select(mapper.MapEventEntityToModel).ToList();
+
+            return response;
+        }
     }
 }

@@ -14,10 +14,10 @@
         </h4>
     </div>
     <div id="EventSearch" class="panel-body collapse in">
-        <div class="row">   
+        <div class="row">
             <div class="col-md-2">
                 <input type="text" id="city" class="form-control" placeholder="City" aria-describedby="sizing-addon2" data-bind="value:city">
-            </div>         
+            </div>
             <div class="col-md-2">
                 <input type="text" id="pinCode" class="form-control" placeholder="Pincode" aria-describedby="sizing-addon2" data-bind="value:pincode">
             </div>
@@ -28,62 +28,60 @@
                 </button>
             </div>
         </div>
+    </div>
+</div>
+<img id="loadingImage" src="~/Content/Images/loading.gif" class="img-circle hide" style="vertical-align: middle; padding-left: 350px;" />
+<div id="Details" class="panel with-nav-tabs panel-default hide">
+    <div class="panel-heading">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#detailsTab" data-toggle="tab">Details</a></li>
+            <li><a href="#timelineTab" data-toggle="tab">Timeline</a></li>
+        </ul>
+    </div>
+    <div class="panel-body">
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="detailsTab">
+                <table id="eventsTable" class="table table-striped table-bordered">
+                    <thead style="background-color: orange;color: White; font-weight: bold; font-family: Calibri">
+                        <tr>
+                            <th>Id</th>
+                            <th>Event Name</th>
+                            <th>Event Description</th>
+                            <th>Venue</th>
+                            <th>From Date</th>
+                            <th>To Date</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind=" foreach: eventList ">
+                        <tr>
+                            <td data-bind="text: Id"></td>
+                            <td data-bind="html: Name"></td>
+                            <td data-bind="html: Description"></td>
+                            <td data-bind="text: Venue"></td>
+                            <td data-bind="text: StartDate"></td>
+                            <td data-bind="text: EndDate"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade in" id="timelineTab">
+                <iframe id="myIFrame" width="1300" height="600" style="border:0"></iframe>
+            </div>
+
         </div>
     </div>
+</div>
 
 
+@section scripts{
 
-        <div class="panel with-nav-tabs panel-default">
-            <div class="panel-heading">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#detailsTab" data-toggle="tab">Details</a></li>
-                    <li><a href="#timelineTab" data-toggle="tab">Timeline</a></li>
-                </ul>
-            </div>
-            <div class="panel-body">
-                <div class="tab-content">
-                    <div class="tab-pane fade in active" id="detailsTab">
-                        <table id="eventsTable" class="table table-striped table-bordered">
-                            <thead style="background-color: orange;color: White; font-weight: bold; font-family: Calibri">
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Event Name</th>
-                                    <th>Event Description</th>
-                                    <th>Venue</th>
-                                    <th>From Date</th>
-                                    <th>To Date</th>
-                                </tr>
-                            </thead>
-                            <tbody data-bind=" foreach: eventList ">
-                                <tr>
-                                    <td data-bind="text: Id"></td>
-                                    <td data-bind="html: Name"></td>
-                                    <td data-bind="html: Description"></td>
-                                    <td data-bind="text: Venue"></td>
-                                    <td data-bind="text: StartDate"></td>
-                                    <td data-bind="text: EndDate"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tab-pane fade in" id="timelineTab">
-                        <iframe id="myIFrame" width="1300" height="600" style="border:0"></iframe>
-                    </div>
-                  
-                </div>
-            </div>
-            </div>
+    <script language="javascript">
 
+        $(document).ready(function () {
+            var viewModel = new EventViewModel();
+            ko.applyBindings(viewModel);
+        });
 
-            @section scripts{
+    </script>
 
-                <script language="javascript">
-                  
-                    $(document).ready(function () {
-                        var viewModel = new EventViewModel();
-                        ko.applyBindings(viewModel);
-                    });
-
-                </script>
-
-            }
+}

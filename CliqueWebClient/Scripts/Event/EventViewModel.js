@@ -34,7 +34,10 @@ var EventViewModel = function () {
 
     self.getLocationEvent = function () {
         debugger;
-
+        if ($("#Details")[0].className === "row show") {
+            $("#Details").removeClass("show").addClass("hide");
+        }
+        $("#loadingImage").addClass("show");
         $("#myIFrame").attr('src', 'http://cliqueanalyzer.azurewebsites.net/proxy/' + self.city());
         
       //  $("#loadingImage").addClass("show");
@@ -55,8 +58,8 @@ var EventViewModel = function () {
 
             self.table = $("#eventsTable").DataTable({ responsive: true });
             self.initialize();
-          //  $("#loadingImage").removeClass("show").addClass("hide");
-            //$('#MapDetails').addClass('in');
+            $("#Details").removeClass('hide').addClass('show');
+            $("#loadingImage").removeClass("show").addClass("hide");
         }).error(function (ex) {
             debugger;
             alert("Error");

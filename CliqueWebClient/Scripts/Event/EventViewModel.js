@@ -12,7 +12,7 @@ var EventViewModel = function () {
     self.WaitForIFrame = function () {        
         var item = $("#myIFrame").contents().find(".navbar-fixed-top");
         if (item.length == 0) {
-           setTimeout(self.WaitForIFrame(), 200);
+           setTimeout(self.WaitForIFrame(), 500);
         } else {
             self.done();
         }
@@ -44,16 +44,17 @@ var EventViewModel = function () {
             url: baseUrl + "api/CliqueAPI/GetEventRequestDetails?pinCode=" + self.pincode() //+ "&location=" + self.hashTagRequestModel().location() //+ "&fromDate=" + self.hashTagRequestModel().fromDate() + "&toDate=" + self.hashTagRequestModel().toDate()
         }).done(function (res) {
             debugger;
-            self.initialize();
+            
             if (self.table) {
                 self.table.clear();
                 self.table.destroy();
             }
             self.eventList(res.CliqueEventList);
             
-            self.initialize(res);
+            
 
             self.table = $("#eventsTable").DataTable({ responsive: true });
+            self.initialize();
           //  $("#loadingImage").removeClass("show").addClass("hide");
             //$('#MapDetails').addClass('in');
         }).error(function (ex) {

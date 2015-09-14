@@ -24,6 +24,9 @@ var EventViewModel = function () {
 
         var filterItem = $("#myIFrame").contents().find("#geoFilterContainer");
         // filterItem.hide();
+
+        $("#Details").removeClass('hide').addClass('show');
+        $("#loadingImage").removeClass("show").addClass("hide");
     };
 
     self.initialize = function () {
@@ -58,8 +61,7 @@ var EventViewModel = function () {
 
             self.table = $("#eventsTable").DataTable({ responsive: true });
             self.initialize();
-            $("#Details").removeClass('hide').addClass('show');
-            $("#loadingImage").removeClass("show").addClass("hide");
+           
         }).error(function (ex) {
             debugger;
             alert("Error");

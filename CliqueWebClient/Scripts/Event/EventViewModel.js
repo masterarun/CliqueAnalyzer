@@ -19,7 +19,7 @@ var EventViewModel = function () {
     };
     self.done = function () {
         var item = $("#myIFrame").contents().find(".navbar-fixed-top");
-        item.html("<div class=\"row\">   <div class=\"col-md-12\"> <h3 class=\"text-center\" style=\"color:orange\": White>Location Events</h3> </div></div>");
+        item.html("<div class=\"row\">   <div class=\"col-md-12\"> <h3 class=\"text-center\" style=\"color:white;background-color:orange;font-family:calibri;\": White>Location based events details</h3> </div></div>");
 
 
         var filterItem = $("#myIFrame").contents().find("#geoFilterContainer");

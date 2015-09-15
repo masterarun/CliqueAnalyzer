@@ -6,7 +6,7 @@ var EventViewModel = function () {
     var self = this;
 
     self.eventList = ko.observableArray([]);
-    self.pincode = ko.observable("06183"); //TODO:Change this to correct pincode.
+    self.pincode = ko.observable("90210"); //TODO:Change this to correct pincode.
     self.city = ko.observable("los-angeles");
 
     self.WaitForIFrame = function () {        

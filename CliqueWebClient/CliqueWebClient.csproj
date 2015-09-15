@@ -180,6 +180,8 @@
     <Content Include="Content\images\header_block_bg.gif" />
     <Content Include="Content\images\img_1.jpg" />
     <Content Include="Content\images\img_2.jpg" />
+    <Content Include="Content\images\IPLLogo.png" />
+    <Content Include="Content\images\IPLLogo.swf" />
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\log1.png" />
     <Content Include="Content\images\logo.gif" />

@@ -52,7 +52,7 @@ namespace CliqueDataEntity.Repository
 
             if (totalTweets > 0)
             {
-                var totalPositiveTweets = response.CliqueTweetList.Count(x => x.Score > 0.1);
+                var totalPositiveTweets = response.CliqueTweetList.Count(x => x.Score < 0);
                 response.TweetScore = totalTweets > 0 ? Math.Round(((double)totalPositiveTweets / (double)totalTweets) * 100, 2) : 0;
             }
             

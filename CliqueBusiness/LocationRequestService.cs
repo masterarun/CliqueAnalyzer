@@ -76,7 +76,7 @@ namespace CliqueService
             var tweetList = tweetBusiness.GetTweetsFromAPI(tweetRequest);
             repository.AddTweetLocationRequest(tweetList, requestId);
             int tweetCount = 1;
-            while (tweetList.Count() == 100 && tweetCount <= 25)
+            while (tweetList.Count() == 100 && tweetCount <= 5)
             {
                 tweetCount++;
                 tweetRequest.MaxId = tweetList.Last().TweetIdStr;

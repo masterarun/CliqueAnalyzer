@@ -15,8 +15,8 @@ namespace CliqueService.Business
 
     public class SemantriaBusiness
     {
-        const string consumerKey = "2bbdf523-7842-4fce-b47a-d77c1315c41c";
-        const string consumerSecret = "da7cacbe-98ac-4db8-8c59-c9e1fb48d8b7";
+        const string consumerKey = "530e397f-b3d6-4034-af0a-234256ce6716";
+        const string consumerSecret = "ee21ee0c-7a0c-450a-81f0-361196272c54";
 
 
         public void GetScore(IEnumerable<SemantriaRequest> requestList)

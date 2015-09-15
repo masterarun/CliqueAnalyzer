@@ -14,7 +14,7 @@ var HashTagViewModel = function () {
        // baseUrl = "http://localhost:4620/";
         // Create the map.
         var map = new google.maps.Map(document.getElementById('hashtagmap'), {
-            zoom: 12,
+            zoom: 4,
             center: { lat: Number(res.Latitude), lng: Number(res.Longitude) },
             mapTypeId: google.maps.MapTypeId.HYBRID,
             heading: 90,

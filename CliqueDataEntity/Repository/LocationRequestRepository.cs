@@ -61,6 +61,7 @@ namespace CliqueDataEntity.Repository
             {
                 response.CrimeScore = externalScore.CrimeScore;
                 response.UnemploymentScore = externalScore.UnemploymentScore;
+                response.OverallScore = Math.Round((response.CrimeScore + response.TweetScore + response.UnemploymentScore) / 3);
             }
             return response;
 

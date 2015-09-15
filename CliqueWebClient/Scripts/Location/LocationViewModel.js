@@ -7,6 +7,7 @@
     self.tweetList = ko.observableArray([]);
     self.CrimeScore = ko.observable("");
     self.UnemploymentScore = ko.observable("");
+    self.OverallScore = ko.observable("");
     self.TweetScore = ko.observable("");
 
     self.locationRequestModel = ko.observable(new LocationRequestModel());
@@ -73,6 +74,7 @@
             self.UnemploymentScore(res.UnemploymentScore);
             self.CrimeScore(res.CrimeScore);
             self.TweetScore(res.TweetScore);
+            self.OverallScore(res.OverallScore);
             self.initialize(res);
 
             self.table = $("#tweetTable").DataTable({

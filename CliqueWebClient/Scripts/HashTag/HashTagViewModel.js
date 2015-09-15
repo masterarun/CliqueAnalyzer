@@ -16,7 +16,7 @@ var HashTagViewModel = function () {
         var map = new google.maps.Map(document.getElementById('hashtagmap'), {
             zoom: 4,
             center: { lat: Number(res.Latitude), lng: Number(res.Longitude) },
-            mapTypeId: google.maps.MapTypeId.HYBRID,
+            mapTypeId: google.maps.MapTypeId.TERRAIN,
             heading: 90,
             tilt: 30,
             //labels:true,

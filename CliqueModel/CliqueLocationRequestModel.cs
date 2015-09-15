@@ -24,6 +24,8 @@ namespace CliqueModel
         public double UnemploymentScore { get; set; }
         public double TweetScore { get; set; }
 
+        public double OverallScore { get; set; }
+
         public virtual ICollection<CliqueEventModel> CliqueEventList { get; set; }
         public virtual ICollection<CliqueTweetModel> CliqueTweetList { get; set; }
 

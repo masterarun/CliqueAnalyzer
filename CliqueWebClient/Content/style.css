@@ -383,7 +383,7 @@ h1 small {
 .footer_resize {
 	margin:0 auto;
 	padding:25px 0;
-	width:930px;
+	/*width:930px;*/
 	color:#505050;
 	font:normal 12px Arial, Helvetica, sans-serif;
 }
